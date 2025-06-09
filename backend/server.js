@@ -60,6 +60,9 @@ async function initMainAdmin() {
     console.log('✅ Main admin initialized');
   }
 }
+app.get("/", (req, res) => {
+  res.send("Backend is working!");
+});
 
 // 1) LOGIN: email+password → sends OTP
 app.post('/api/login', async (req, res) => {
