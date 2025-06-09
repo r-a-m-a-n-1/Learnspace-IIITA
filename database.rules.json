@@ -3,8 +3,12 @@
     "admins": {
       ".read": true,
       ".write": true,
-      ".indexOn": ["isMain", "email"]
+      ".indexOn": ["email", "isMain"]
     },
-    // ... other top‐level rules ...
+    "pendingAdmins": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["email"]
+    }
   }
 }
