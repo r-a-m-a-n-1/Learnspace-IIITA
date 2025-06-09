@@ -143,40 +143,88 @@ app.post('/api/verify-otp', async (req, res) => {
 });
 
 
-// 3) REQUEST new admin → main admin receives OTP approval request
+// // 3) REQUEST new admin → main admin receives OTP approval request
+// app.post('/api/request-admin', async (req, res) => {
+//   const { name, email, password } = req.body;
+//   const [exists] = await Promise.all([
+//     db.ref('admins').orderByChild('email').equalTo(email).once('value'),
+//     db.ref('pendingAdmins').orderByChild('email').equalTo(email).once('value'),
+//   ]).then(([a, p]) => [a.exists(), p.exists()]);
+
+//   if (exists) {
+//     return res.status(400).json({ error: 'Email already registered' });
+//   }
+
+//   try {
+//     const hashed = await bcrypt.hash(password, 10);
+//     const otp = generateOTP();
+
+//     await transporter.sendMail({
+//       to: process.env.MAIN_ADMIN_EMAIL,
+//       subject: 'Approve New Admin',
+//       text: `Approve new admin ${name} (${email}) with OTP: ${otp}`,
+//     });
+
+//     const key = sanitizeKey(email);
+//     await db.ref(`pendingAdmins/${key}`).set({
+//       name, email, password: hashed,
+//       otp, expires: Date.now() + 60 * 60 * 1000,
+//     });
+
+//     res.json({ message: 'Awaiting main admin approval' });
+//   } catch (err) {
+//     console.error('Request-admin error:', err);
+//     res.status(500).json({ error: 'Server error' });
+//   }
+// });
+
 app.post('/api/request-admin', async (req, res) => {
+  console.log('➤ [REQUEST-ADMIN] incoming:', req.body);
+
   const { name, email, password } = req.body;
-  const [exists] = await Promise.all([
+  const [existsAdmins, existsPending] = await Promise.all([
     db.ref('admins').orderByChild('email').equalTo(email).once('value'),
     db.ref('pendingAdmins').orderByChild('email').equalTo(email).once('value'),
   ]).then(([a, p]) => [a.exists(), p.exists()]);
 
-  if (exists) {
+  console.log('➤ existsAdmins=', existsAdmins, 'existsPending=', existsPending);
+  if (existsAdmins) {
     return res.status(400).json({ error: 'Email already registered' });
   }
 
   try {
+    console.log('➤ hashing password');
     const hashed = await bcrypt.hash(password, 10);
+
+    console.log('➤ generating OTP');
     const otp = generateOTP();
 
+    console.log(`➤ sending email to main admin (${process.env.MAIN_ADMIN_EMAIL})`);
     await transporter.sendMail({
       to: process.env.MAIN_ADMIN_EMAIL,
       subject: 'Approve New Admin',
       text: `Approve new admin ${name} (${email}) with OTP: ${otp}`,
     });
+    console.log('➤ email sent');
 
     const key = sanitizeKey(email);
+    console.log('➤ writing pendingAdmins at', key);
     await db.ref(`pendingAdmins/${key}`).set({
-      name, email, password: hashed,
-      otp, expires: Date.now() + 60 * 60 * 1000,
+      name,
+      email,
+      password: hashed,
+      otp,
+      expires: Date.now() + 60 * 60 * 1000,
     });
+    console.log('➤ write successful');
 
     res.json({ message: 'Awaiting main admin approval' });
   } catch (err) {
-    console.error('Request-admin error:', err);
-    res.status(500).json({ error: 'Server error' });
+    console.error('🔴 [REQUEST-ADMIN ERROR]:', err);
+    return res.status(500).json({ error: err.message });
   }
 });
+
 
 // 4) VERIFY new admin by main admin OTP
 app.post('/api/verify-admin', async (req, res) => {
