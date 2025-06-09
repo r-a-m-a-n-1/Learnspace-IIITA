@@ -10,8 +10,7 @@
 # Node modules
 node_modules/
 
-# Ignore Firebase / GCP keys
-/backend/serviceAccountKey.json
+
 
 
 # Node.js / React / JavaScript
@@ -19,5 +18,4 @@ node_modules/
 build/
 .env
 
-# service account keys
-LearnSpace_IIITA/backend/serviceAccountKey.json
+
