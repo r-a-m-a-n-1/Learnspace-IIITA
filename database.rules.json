@@ -1,0 +1,10 @@
+{
+  "rules": {
+    "admins": {
+      ".read": true,
+      ".write": true,
+      ".indexOn": ["isMain", "email"]
+    },
+    // ... other top‐level rules ...
+  }
+}
