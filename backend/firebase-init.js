@@ -13,15 +13,16 @@
 // module.exports = db;
 
 const admin = require('firebase-admin');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 let serviceAccount;
 
 try {
-  serviceAccount = JSON.parse(process.env.SERVICE_ACCOUNT_KEY);
+  // Decode base64 → get valid JSON string
+  const jsonStr = Buffer.from(process.env.SERVICE_ACCOUNT_KEY, 'base64').toString('utf8');
+  serviceAccount = JSON.parse(jsonStr);
 } catch (error) {
-  console.error('❌ Failed to parse SERVICE_ACCOUNT_KEY. Make sure it is a valid JSON string.');
+  console.error('❌ Failed to parse SERVICE_ACCOUNT_KEY. Ensure it is base64-encoded JSON.');
   process.exit(1);
 }
 
