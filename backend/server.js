@@ -35,10 +35,14 @@ const sanitizeKey = str => str.replace(/[.#$\[\]/]/g, ',');
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
+    type: 'OAuth2',
     user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    clientId: process.env.SMTP_CLIENT_ID,
+    clientSecret: process.env.SMTP_CLIENT_SECRET,
+    refreshToken: process.env.SMTP_REFRESH_TOKEN,
   },
 });
+
 
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
