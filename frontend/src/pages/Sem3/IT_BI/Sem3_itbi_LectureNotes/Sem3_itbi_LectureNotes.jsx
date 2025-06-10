@@ -5,7 +5,7 @@ const Sem3_itbi_LectureNotes = () => {
   return (
     <div className="fixed inset-0 bg-black text-white overflow-auto">
       <div className="pt-24 pb-8 max-w-screen-xl mx-auto px-4 flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-8">Semester 3 IT-BI - Lecture Notes</h1>
+        <h1 className="text-4xl font-bold mb-8">  📚 Semester 3 IT-BI - Lecture Notes</h1>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
 
           {/* Card 1 - Foundation Of Fintech */}

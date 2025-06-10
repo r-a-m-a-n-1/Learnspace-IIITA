@@ -118,7 +118,7 @@ const Sem2_it_LectureNotes = () => {
     <div className="fixed inset-0 bg-black text-white overflow-auto">
       <div className="pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-screen-xl mx-auto flex flex-col items-center">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-10 text-center text-indigo-400 drop-shadow-md">
-          📘 Semester 2 IT - Lecture Notes
+            📚 Semester 2 IT - Lecture Notes
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
