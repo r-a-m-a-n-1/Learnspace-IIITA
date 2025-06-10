@@ -96,8 +96,6 @@
 //     </div>
 //   );
 // };
-
-// export default ChooseSemesterPage;
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -193,7 +191,7 @@ const ChooseSemesterPage = () => {
     <div className="min-h-screen w-full bg-black pt-24 px-4">
       {/* Animated Heading */}
       <header className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-extrabold text-blue-600 tracking-wide">
+        <h1 className="text-3xl md:text-5xl font-extrabold text-blue-600 tracking-wide whitespace-nowrap overflow-hidden text-ellipsis">
           {displayedText}
           <span className="border-r-2 border-blue-600 animate-pulse ml-1"></span>
         </h1>
