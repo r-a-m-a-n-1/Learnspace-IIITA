@@ -15,7 +15,7 @@ const Sem2_itbi_VideoPlaylist = () => {
             to="/sem2/data-structures-and-algorithms"
             className="cursor-pointer bg-gradient-to-br from-green-400 to-green-500 text-white shadow-xl rounded-xl w-60 h-60 flex flex-col justify-center items-center transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-2xl"
           >
-            <img src="/en_py.png" alt="Data Structures" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/alg.png" alt="Data Structures" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-xl font-bold text-center px-2">Data Structures and Algorithms</h2>
           </Link>
 
@@ -24,7 +24,7 @@ const Sem2_itbi_VideoPlaylist = () => {
             to="/sem2/computer-organization-architecture"
             className="cursor-pointer bg-gradient-to-br from-red-400 to-red-500 text-white shadow-xl rounded-xl w-60 h-60 flex flex-col justify-center items-center transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-2xl"
           >
-            <img src="/fee.png" alt="Computer Org" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/coa.png" alt="Computer Org" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-xl font-bold text-center px-2">Computer Organization and Architecture</h2>
           </Link>
 
@@ -33,7 +33,7 @@ const Sem2_itbi_VideoPlaylist = () => {
             to="/sem2/discrete-mathematical-structures"
             className="cursor-pointer bg-gradient-to-br from-blue-400 to-blue-500 text-white shadow-xl rounded-xl w-60 h-60 flex flex-col justify-center items-center transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-2xl"
           >
-            <img src="/linear_algebra.png" alt="Discrete Math" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/dms.jpg" alt="Discrete Math" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-xl font-bold text-center px-2">Discrete Mathematical Structures</h2>
           </Link>
 
@@ -42,7 +42,7 @@ const Sem2_itbi_VideoPlaylist = () => {
             to="/sem2/professional-ethics"
             className="cursor-pointer bg-gradient-to-br from-purple-400 to-purple-500 text-white shadow-xl rounded-xl w-60 h-60 flex flex-col justify-center items-center transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-2xl"
           >
-            <img src="/psp.png" alt="Professional Ethics" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/pys.png" alt="Professional Ethics" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-xl font-bold text-center px-2">Professional Ethics</h2>
           </Link>
 
@@ -51,7 +51,7 @@ const Sem2_itbi_VideoPlaylist = () => {
             to="/sem2/web-development"
             className="cursor-pointer bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-xl rounded-xl w-60 h-60 flex flex-col justify-center items-center transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-2xl"
           >
-            <img src="/com_skill.png" alt="Web Dev" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/web.png" alt="Web Dev" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-xl font-bold text-center px-2">Web Development</h2>
           </Link>
 
@@ -60,7 +60,7 @@ const Sem2_itbi_VideoPlaylist = () => {
             to="/sem2/essential-of-business-informatic"
             className="cursor-pointer bg-gradient-to-br from-pink-400 to-pink-500 text-white shadow-xl rounded-xl w-60 h-60 flex flex-col justify-center items-center transition-all duration-300 transform hover:scale-110 hover:rotate-6 hover:shadow-2xl"
           >
-            <img src="/ethics.png" alt="Essentials Of Business Informatics" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/com_skill.png" alt="Essentials Of Business Informatics" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-xl font-bold text-center px-2">Essentials Of Business Informatics</h2>
           </Link>
 

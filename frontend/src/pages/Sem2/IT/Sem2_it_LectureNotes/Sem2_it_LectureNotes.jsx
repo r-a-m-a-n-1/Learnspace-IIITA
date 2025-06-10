@@ -128,7 +128,7 @@ const Sem2_it_LectureNotes = () => {
             className="bg-gradient-to-br from-green-400 to-green-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
             <img
-              src="/en_py.png"
+              src="/coa.png"
               alt="Computer Organization And Architecture"
               className="w-16 h-16 mb-4 animate-bounce"
             />
@@ -143,7 +143,7 @@ const Sem2_it_LectureNotes = () => {
             className="bg-gradient-to-br from-red-400 to-red-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
             <img
-              src="/fee.png"
+              src="/alg.png"
               alt="Data Structures And Algorithms"
               className="w-16 h-16 mb-4 animate-bounce"
             />
@@ -158,7 +158,7 @@ const Sem2_it_LectureNotes = () => {
             className="bg-gradient-to-br from-blue-400 to-blue-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
             <img
-              src="/linear_algebra.png"
+              src="/dms.jpg"
               alt="Discrete Mathematical Structures"
               className="w-16 h-16 mb-4 animate-bounce"
             />
@@ -173,7 +173,7 @@ const Sem2_it_LectureNotes = () => {
             className="bg-gradient-to-br from-purple-400 to-purple-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
             <img
-              src="/psp.png"
+              src="/pys.png"
               alt="Physical Education"
               className="w-16 h-16 mb-4 animate-bounce"
             />
@@ -188,7 +188,7 @@ const Sem2_it_LectureNotes = () => {
             className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
             <img
-              src="/com_skill.png"
+              src="/pdc.png"
               alt="Principles Of Data Communication"
               className="w-16 h-16 mb-4 animate-bounce"
             />
@@ -218,7 +218,7 @@ const Sem2_it_LectureNotes = () => {
             className="bg-gradient-to-br from-pink-400 to-pink-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
             <img
-              src="/web_dev.png"
+              src="/web.png"
               alt="Web Development"
               className="w-16 h-16 mb-4 animate-bounce"
             />

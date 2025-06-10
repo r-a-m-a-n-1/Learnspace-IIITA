@@ -127,7 +127,7 @@ const Sem2_itbi_PreviousYearPaper = () => {
             to="/sem2/computer-organization-paper"
             className="bg-gradient-to-br from-green-400 to-green-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/en_py.png" alt="Computer Organization And Architecture" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/coa.png" alt="Computer Organization And Architecture" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">
               Computer Organization And Architecture
             </h2>
@@ -138,7 +138,7 @@ const Sem2_itbi_PreviousYearPaper = () => {
             to="/sem2/data-structures-algorithms-paper"
             className="bg-gradient-to-br from-red-400 to-red-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/fee.png" alt="Data Structures And Algorithms" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/alg.png" alt="Data Structures And Algorithms" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">
               Data Structures And Algorithms
             </h2>
@@ -149,7 +149,7 @@ const Sem2_itbi_PreviousYearPaper = () => {
             to="/sem2/discrete-math-paper"
             className="bg-gradient-to-br from-blue-400 to-blue-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/linear_algebra.png" alt="Discrete Mathematical Structures" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/dms.jpg" alt="Discrete Mathematical Structures" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">
               Discrete Mathematical Structures
             </h2>
@@ -160,7 +160,7 @@ const Sem2_itbi_PreviousYearPaper = () => {
             to="/sem2/essential-of-business-informatics-paper"
             className="bg-gradient-to-br from-purple-400 to-purple-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/psp.png" alt="Essential Of Business Informatics" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/com_skill.png" alt="Essential Of Business Informatics" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">
               Essential Of Business Informatics
             </h2>
@@ -171,7 +171,7 @@ const Sem2_itbi_PreviousYearPaper = () => {
             to="/sem2/professional-ethics-paper"
             className="bg-gradient-to-br from-orange-400 to-orange-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/com_skill.png" alt="Professional Ethics" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/pro.png" alt="Professional Ethics" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">
               Professional Ethics
             </h2>
@@ -193,7 +193,7 @@ const Sem2_itbi_PreviousYearPaper = () => {
             to="/sem2/web-development-paper"
             className="bg-gradient-to-br from-pink-400 to-pink-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/web_dev.png" alt="Web Development" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/web.png" alt="Web Development" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">
               Web Development
             </h2>
