@@ -20,6 +20,7 @@
     ]
   },
   "database": {
-    "rules": "database.rules.json"
+    "rules": "database.rules.json",
+     "instance": "adminlogin-5a98a-default-rtdb"
   }
 }

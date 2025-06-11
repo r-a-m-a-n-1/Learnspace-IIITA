@@ -8,18 +8,24 @@ export default function ApproveAdmin() {
   const token = new URLSearchParams(useLocation().search).get('token');
 
   useEffect(() => {
-    if (!token) return setStatus('Invalid link');
+    if (!token) {
+      setStatus('Invalid approval link.');
+      return;
+    }
+
     api.get(`/approve-admin?token=${token}`)
-      .then(() => setStatus('✓ Admin approved! You can now log in.'))
+      .then(() => setStatus('✓ Admin approved! Return to dashboard.'))
       .catch(() => setStatus('Approval failed or expired.'));
   }, [token]);
+
+  const isSuccess = status.startsWith('✓');
 
   return (
     <div className="flex flex-col items-center justify-center h-screen px-4">
       <h1 className="text-2xl mb-4">{status}</h1>
-      {status.startsWith('✓') && (
-        <Link to="/admin/login" className="text-green-500 hover:underline">
-          Go to Login
+      {isSuccess && (
+        <Link to="/admin" className="text-green-500 hover:underline">
+          ← Back to Admin Dashboard
         </Link>
       )}
     </div>
