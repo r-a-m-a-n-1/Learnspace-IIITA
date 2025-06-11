@@ -2014,7 +2014,7 @@ import ORPapers from "./pages/Sem4/IT_BI/Sem4_itbi_PreviousYearPapers/OperationR
 import DigitalMarketingVideo from "./pages/Sem4/IT_BI/Sem4_itbi_VedioPlaylist/DigitalMarketingVideo"
 import ORVideo from "./pages/Sem4/IT_BI/Sem4_itbi_VedioPlaylist/OperationReasearchVideo"
 
-import ApproveAdmin from "./pages/ApprovAdmin.jsx";
+import ApproveAdmin from "./pages/ApproveAdmin.jsx";
 
 
 
@@ -2066,7 +2066,7 @@ function AppContent() {
 
 
        
-<Route path="/approve-admin" element={<ApproveAdmin />} />
+
 
 
       <Routes>
@@ -2075,6 +2075,7 @@ function AppContent() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/amazing-feature" element={<AmazingFeaturePage />} />
         <Route path="/choose-semester" element={<ChooseSemesterPage />} />
+        <Route path="/approve-admin" element={<ApproveAdmin />} />
         <Route path="/sem1" element={<Sem1Page />} />
         {/* … other semesters … */}
 
