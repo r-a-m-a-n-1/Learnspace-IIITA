@@ -3,6 +3,21 @@
 // upload integration 
 
 
+// require('dotenv').config();
+// const express    = require('express');
+// const cors       = require('cors');
+// const jwt        = require('jsonwebtoken');
+// const bcrypt     = require('bcryptjs');
+// const nodemailer = require('nodemailer');
+// const { OAuth2Client } = require('google-auth-library');
+// const db         = require('./firebase-init');
+
+// const multer = require('multer');
+// const cloudinary = require('cloudinary').v2;
+// const { Readable } = require('stream');
+
+
+
 require('dotenv').config();
 const express    = require('express');
 const cors       = require('cors');
@@ -10,10 +25,10 @@ const jwt        = require('jsonwebtoken');
 const bcrypt     = require('bcryptjs');
 const nodemailer = require('nodemailer');
 const { OAuth2Client } = require('google-auth-library');
+const { v4: uuidv4 }  = require('uuid');
 const db         = require('./firebase-init');
-
-const multer = require('multer');
-const cloudinary = require('cloudinary').v2;
+const multer     = require('multer');
+const cloudinary= require('cloudinary').v2;
 const { Readable } = require('stream');
 
 cloudinary.config({
@@ -182,63 +197,149 @@ app.post('/api/verify-otp', async (req, res) => {
 //   }
 // });
 
-app.post('/api/request-admin', async (req, res) => {
-  console.log('➤ [REQUEST-ADMIN] incoming:', req.body);
+// app.post('/api/request-admin', async (req, res) => {
+//   console.log('➤ [REQUEST-ADMIN] incoming:', req.body);
 
+//   const { name, email, password } = req.body;
+//   const [existsAdmins, existsPending] = await Promise.all([
+//     db.ref('admins').orderByChild('email').equalTo(email).once('value'),
+//     db.ref('pendingAdmins').orderByChild('email').equalTo(email).once('value'),
+//   ]).then(([a, p]) => [a.exists(), p.exists()]);
+
+//   console.log('➤ existsAdmins=', existsAdmins, 'existsPending=', existsPending);
+//   if (existsAdmins) {
+//     return res.status(400).json({ error: 'Email already registered' });
+//   }
+
+//   try {
+//     console.log('➤ hashing password');
+//     const hashed = await bcrypt.hash(password, 10);
+
+//     console.log('➤ generating OTP');
+//     const otp = generateOTP();
+
+//     console.log(`➤ sending email to main admin (${process.env.MAIN_ADMIN_EMAIL})`);
+//     await transporter.sendMail({
+//       to: process.env.MAIN_ADMIN_EMAIL,
+//       subject: 'Approve New Admin',
+//       text: `Approve new admin ${name} (${email}) with OTP: ${otp}`,
+//     });
+//     console.log('➤ email sent');
+
+//     const key = sanitizeKey(email);
+//     console.log('➤ writing pendingAdmins at', key);
+//     await db.ref(`pendingAdmins/${key}`).set({
+//       name,
+//       email,
+//       password: hashed,
+//       otp,
+//       expires: Date.now() + 60 * 60 * 1000,
+//     });
+//     console.log('➤ write successful');
+
+//     res.json({ message: 'Awaiting main admin approval' });
+//   } catch (err) {
+//     console.error('🔴 [REQUEST-ADMIN ERROR]:', err);
+//     return res.status(500).json({ error: err.message });
+//   }
+// });
+
+
+// // 4) VERIFY new admin by main admin OTP
+// app.post('/api/verify-admin', async (req, res) => {
+//   const { email, otp } = req.body;
+//   const key = sanitizeKey(email);
+//   const snap = await db.ref(`pendingAdmins/${key}`).once('value');
+//   const p = snap.val();
+
+//   if (!p || p.otp !== otp || Date.now() > p.expires) {
+//     return res.status(400).json({ error: 'Invalid or expired OTP' });
+//   }
+
+//   await db.ref('admins').push({
+//     name:  p.name,
+//     email: p.email,
+//     password: p.password,
+//     isMain: false,
+//   });
+//   await db.ref(`pendingAdmins/${key}`).remove();
+//   res.json({ message: 'New admin created successfully' });
+// });
+
+
+// ——————————————————————————
+// 2) REQUEST new admin → approval token
+// ——————————————————————————
+app.post('/api/request-admin', async (req, res) => {
   const { name, email, password } = req.body;
+  const key = sanitizeKey(email);
+
   const [existsAdmins, existsPending] = await Promise.all([
     db.ref('admins').orderByChild('email').equalTo(email).once('value'),
     db.ref('pendingAdmins').orderByChild('email').equalTo(email).once('value'),
   ]).then(([a, p]) => [a.exists(), p.exists()]);
 
-  console.log('➤ existsAdmins=', existsAdmins, 'existsPending=', existsPending);
   if (existsAdmins) {
     return res.status(400).json({ error: 'Email already registered' });
   }
 
   try {
-    console.log('➤ hashing password');
-    const hashed = await bcrypt.hash(password, 10);
+    const hashed  = await bcrypt.hash(password, 10);
+    const token   = uuidv4();
+    const expires = Date.now() + 24*60*60*1000; // 24h
 
-    console.log('➤ generating OTP');
-    const otp = generateOTP();
+    await db.ref(`pendingAdmins/${key}`).set({
+      name, email, password: hashed, token, expires,
+    });
 
-    console.log(`➤ sending email to main admin (${process.env.MAIN_ADMIN_EMAIL})`);
+    const approvalUrl = `${process.env.FRONTEND_URL}/approve-admin?token=${token}`;
     await transporter.sendMail({
       to: process.env.MAIN_ADMIN_EMAIL,
-      subject: 'Approve New Admin',
-      text: `Approve new admin ${name} (${email}) with OTP: ${otp}`,
+      subject: 'Approve New Admin Request',
+      html: `
+        <p><strong>${name}</strong> (${email}) has requested an admin account.</p>
+        <p>
+          <a href="${approvalUrl}"
+             style="
+               display:inline-block;
+               padding:12px 24px;
+               background:#28a745;
+               color:#fff;
+               text-decoration:none;
+               border-radius:4px;
+             ">
+            Approve Account
+          </a>
+        </p>
+        <p>If you did not expect this, ignore this email.</p>
+      `,
     });
-    console.log('➤ email sent');
-
-    const key = sanitizeKey(email);
-    console.log('➤ writing pendingAdmins at', key);
-    await db.ref(`pendingAdmins/${key}`).set({
-      name,
-      email,
-      password: hashed,
-      otp,
-      expires: Date.now() + 60 * 60 * 1000,
-    });
-    console.log('➤ write successful');
 
     res.json({ message: 'Awaiting main admin approval' });
   } catch (err) {
-    console.error('🔴 [REQUEST-ADMIN ERROR]:', err);
-    return res.status(500).json({ error: err.message });
+    console.error('REQUEST-ADMIN ERROR:', err);
+    res.status(500).json({ error: err.message });
   }
 });
 
+// ——————————————————————————
+// 3) APPROVE via link
+// ——————————————————————————
+app.get('/api/approve-admin', async (req, res) => {
+  const { token } = req.query;
+  if (!token) return res.status(400).send('Missing token');
 
-// 4) VERIFY new admin by main admin OTP
-app.post('/api/verify-admin', async (req, res) => {
-  const { email, otp } = req.body;
-  const key = sanitizeKey(email);
-  const snap = await db.ref(`pendingAdmins/${key}`).once('value');
-  const p = snap.val();
+  const snap = await db.ref('pendingAdmins').once('value');
+  let pendingKey, p;
+  snap.forEach(child => {
+    if (child.val().token === token) {
+      pendingKey = child.key;
+      p = child.val();
+    }
+  });
 
-  if (!p || p.otp !== otp || Date.now() > p.expires) {
-    return res.status(400).json({ error: 'Invalid or expired OTP' });
+  if (!p || Date.now() > p.expires) {
+    return res.status(400).send('Token invalid or expired');
   }
 
   await db.ref('admins').push({
@@ -247,9 +348,23 @@ app.post('/api/verify-admin', async (req, res) => {
     password: p.password,
     isMain: false,
   });
-  await db.ref(`pendingAdmins/${key}`).remove();
-  res.json({ message: 'New admin created successfully' });
+  await db.ref(`pendingAdmins/${pendingKey}`).remove();
+
+  await transporter.sendMail({
+    to: p.email,
+    subject: 'Your Admin Account Is Live!',
+    text: `Hi ${p.name},\n\nYour request has been approved. You can now log in at ${process.env.FRONTEND_URL}/admin/login.\n\n— The Team`,
+  });
+
+  res.send(`
+    <h1>✅ Admin Approved</h1>
+    <p>You have successfully approved <strong>${p.email}</strong> as an admin.</p>
+  `);
 });
+
+
+
+
 
 // 5) FORGOT PASSWORD: send reset OTP
 app.post('/api/reset-password', async (req, res) => {

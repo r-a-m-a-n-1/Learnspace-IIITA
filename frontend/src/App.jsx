@@ -2014,6 +2014,7 @@ import ORPapers from "./pages/Sem4/IT_BI/Sem4_itbi_PreviousYearPapers/OperationR
 import DigitalMarketingVideo from "./pages/Sem4/IT_BI/Sem4_itbi_VedioPlaylist/DigitalMarketingVideo"
 import ORVideo from "./pages/Sem4/IT_BI/Sem4_itbi_VedioPlaylist/OperationReasearchVideo"
 
+import ApproveAdmin from "./pages/ApprovAdmin.jsx";
 
 
 
@@ -2061,6 +2062,12 @@ function AppContent() {
             <FloatingShape color="bg-lime-500" size="w-32 h-32" top="40%" left="-10%" delay={2} />
           </>
         )}
+
+
+
+       
+<Route path="/approve-admin" element={<ApproveAdmin />} />
+
 
       <Routes>
         {/* Public */}
