@@ -23,6 +23,8 @@ const semesters = [
   { name: "Semester 8" },
 ];
 
+
+
 const branches = ["IT", "IT-BI", "ECE"];
 
 const semesterSubjects = {
