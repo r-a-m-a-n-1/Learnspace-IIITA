@@ -305,10 +305,10 @@ const EP = () => {
           </div>
           <nav className="space-y-4">
             {[
-              ["classical", "Classical", 0, 8],
-              ["quantum", "Quantum", 8, 16],
-              ["semiconductor", "Semiconductor", 16, 24],
-              ["problems", "Problems", 24, 32],
+              ["classical", "Classical", 0, 13],
+              ["quantum", "Quantum", 14, 95],
+              ["semiconductor", "Semiconductor", 96, 101],
+              ["problems", "Problems", 102, 115],
             ].map(([key, label]) => (
               <button
                 key={key}
@@ -339,15 +339,15 @@ const EP = () => {
           </button>
         </div>
 
-        {selectedSection === null && renderSection("classical", "Classical Mechanics", 0, 8)}
-        {selectedSection === null && renderSection("quantum", "Quantum Mechanics", 8, 16)}
-        {selectedSection === null && renderSection("semiconductor", "Semiconductor Physics", 16, 24)}
-        {selectedSection === null && renderSection("problems", "Problem Solving", 24, 32)}
+        {selectedSection === null && renderSection("classical", "Classical Mechanics", 0, 13)}
+        {selectedSection === null && renderSection("quantum", "Quantum Mechanics", 14, 95)}
+        {selectedSection === null && renderSection("semiconductor", "Semiconductor Physics", 96, 101)}
+        {selectedSection === null && renderSection("problems", "Problem Solving", 102, 115)}
 
-        {selectedSection === "classical" && renderSection("classical", "Classical Mechanics", 0, 8)}
-        {selectedSection === "quantum" && renderSection("quantum", "Quantum Mechanics", 8, 16)}
-        {selectedSection === "semiconductor" && renderSection("semiconductor", "Semiconductor Physics", 16, 24)}
-        {selectedSection === "problems" && renderSection("problems", "Problem Solving", 24, 32)}
+        {selectedSection === "classical" && renderSection("classical", "Classical Mechanics", 0, 13)}
+        {selectedSection === "quantum" && renderSection("quantum", "Quantum Mechanics", 14, 95)}
+        {selectedSection === "semiconductor" && renderSection("semiconductor", "Semiconductor Physics", 96, 101)}
+        {selectedSection === "problems" && renderSection("problems", "Problem Solving", 102, 115)}
       </main>
 
       {/* VIDEO MODAL */}

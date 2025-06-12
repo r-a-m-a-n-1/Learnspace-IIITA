@@ -1672,10 +1672,9 @@
 
 
 // maha tamasa
+// app.jsx
 
 
-// App.jsx
-// App.jsx
 import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
