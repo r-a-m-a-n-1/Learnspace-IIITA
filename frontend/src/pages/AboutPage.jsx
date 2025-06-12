@@ -721,21 +721,28 @@ const AboutPage = () => {
   const navigate = useNavigate();
   const [adminCount, setAdminCount] = useState(0);
 
-  useEffect(() => {
-    const fetchContributors = async () => {
-      try {
-        const response = await fetch('/api/admins/contributors');
-        if (!response.ok) throw new Error('Network response was not ok');
-        const data = await response.json();
-        setAdminCount(data.count || 0); // Ensure we have a number even if count is missing
-      } catch (err) {
-        console.error('Error fetching contributors:', err);
-        setAdminCount(1); // Fallback to showing at least 1 contributor
+useEffect(() => {
+  const fetchCount = async () => {
+    try {
+      const response = await fetch('/api/admins/contributors');
+      if (!response.ok) throw new Error('API error');
+      const data = await response.json();
+      
+      // Ensure we're getting the count properly
+      if (typeof data.count !== 'number') {
+        console.error('Unexpected response format:', data);
+        setAdminCount(1); // Fallback
+        return;
       }
-    };
-
-    fetchContributors();
-  }, []);
+      
+      setAdminCount(data.count);
+    } catch (err) {
+      console.error('Fetch failed, using fallback:', err);
+      setAdminCount(1); // Guaranteed minimum
+    }
+  };
+  fetchCount();
+}, []);
 
   return (
     <div className="min-h-screen flex flex-col justify-between bg-black">

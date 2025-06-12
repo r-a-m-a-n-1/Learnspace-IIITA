@@ -547,11 +547,11 @@ app.get("/", (req, res) => {
 app.get('/api/admins/contributors', async (req, res) => {
   try {
     const snap = await db.ref('contributors').once('value');
-    const count = snap.val()?.count ?? 0; // Nullish coalescing fallback
-    res.json({ count }); // Ensure consistent response format
+    const count = snap.val()?.count || 0; // Proper null check
+    res.json({ count });
   } catch (err) {
-    console.error('Contributors endpoint error:', err);
-    res.status(500).json({ error: 'Database error', count: 0 });
+    console.error('Failed to fetch contributors:', err);
+    res.status(500).json({ count: 0 }); // Always return consistent format
   }
 });
 
