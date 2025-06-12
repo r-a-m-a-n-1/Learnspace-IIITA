@@ -1930,6 +1930,11 @@ import ProfessionalEthicsLectureNotes from "./pages/Sem1/Sem1_LecturePlaylist/Pr
 // Import Sem4 Home Page (used for Sem4 route)
 import Sem4_HomePage from "./pages/Sem4/Sem4_HomePage";
 
+import Sem5_HomePage from "./pages/Sem5/Sem5_HomePage";
+import Sem6_HomePage from "./pages/Sem6/Sem6_HomePage";
+import Sem7_HomePage from "./pages/Sem7/Sem7_HomePage";
+import Sem8_HomePage from "./pages/Sem8/Sem8_HomePage";
+
 // Import new Sem3 Department Home 4
 import Sem4_IT_HomePage from "./pages/Sem4/IT/Sem4_IT_Homepage";
 import Sem4_ITBI_HomePage from "./pages/Sem4/IT_BI/Sem4_ITBI_Homepage";
@@ -2174,6 +2179,10 @@ function AppContent() {
         <Route path="/sem4/itbi/design-analysis-algorithms-videos" element={<DSAVideos  />} />
         <Route path="/sem4/itbi/money-and-banking-videos" element={<MoneyBankingVideos />} />
         <Route path="/sem4/itbi/operation-research-videos" element={<ORVideo />} />
+
+
+
+
 
 
         {/* sem 4 it bi video routing  */}
@@ -3314,6 +3323,10 @@ function AppContent() {
 
          {/* Sem4 Routes */}
         <Route path="/sem4_home" element={<Sem4_HomePage />} />
+          <Route path="/sem5_home" element={<Sem5_HomePage />} />
+            <Route path="/sem6_home" element={<Sem6_HomePage />} />
+              <Route path="/sem7_home" element={<Sem7_HomePage />} />
+                <Route path="/sem8_home" element={<Sem8_HomePage />} />
 
 
         {/* Sem4 Department Routes */}
