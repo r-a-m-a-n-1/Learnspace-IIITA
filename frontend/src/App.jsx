@@ -2076,7 +2076,7 @@ function AppContent() {
       <Routes>
         {/* Public */}
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
+        {/* <Route path="/about" element={<AboutPage />} /> */}
         <Route path="/amazing-feature" element={<AmazingFeaturePage />} />
         <Route path="/choose-semester" element={<ChooseSemesterPage />} />
         <Route path="/approve-admin" element={<ApproveAdmin />} />
@@ -2183,6 +2183,17 @@ function AppContent() {
 
 
 
+
+         <Route
+          path="/about"
+          element={
+            <div className="w-screen bg-black min-h-screen">
+              <AboutPage />
+            </div>
+          }
+        />
+{/* 
+       <Route path="/about" element={<AboutPage />} /> */}
 
 
         {/* sem 4 it bi video routing  */}

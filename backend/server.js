@@ -1,23 +1,5 @@
 
 
-// upload integration 
-
-
-// require('dotenv').config();
-// const express    = require('express');
-// const cors       = require('cors');
-// const jwt        = require('jsonwebtoken');
-// const bcrypt     = require('bcryptjs');
-// const nodemailer = require('nodemailer');
-// const { OAuth2Client } = require('google-auth-library');
-// const db         = require('./firebase-init');
-
-// const multer = require('multer');
-// const cloudinary = require('cloudinary').v2;
-// const { Readable } = require('stream');
-
-
-
 require('dotenv').config();
 const express    = require('express');
 const cors       = require('cors');
@@ -61,6 +43,17 @@ const transporter = nodemailer.createTransport({
 
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
 
+
+// ===== New: Initialize contributor counter in Firestore if missing =====
+async function initContributorsCounter() {
+  const counterRef = db.collection('appStats').doc('counters');
+  const doc = await counterRef.get();
+  if (!doc.exists) {
+    await counterRef.set({ adminCount: 0 });
+    console.log('✅ Contributors counter initialized');
+  }
+}
+
 async function initMainAdmin() {
   const snap = await db
     .ref('admins')
@@ -81,6 +74,15 @@ async function initMainAdmin() {
 }
 
 
+// ===== New: Middleware to increment contributor count on admin approval =====
+async function incrementContributorCount() {
+  const counterRef = db.collection('appStats').doc('counters');
+  await counterRef.update({
+    adminCount: db.firestore.FieldValue.increment(1)
+  });
+}
+
+
 app.use((req, res, next) => {
   res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
   res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
@@ -91,6 +93,18 @@ app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
 
+
+// ===== New: Route to fetch contributor count =====
+app.get('/api/admins/contributors', async (req, res) => {
+  try {
+    const doc = await db.collection('appStats').doc('counters').get();
+    const count = doc.exists ? doc.data().adminCount : 0;
+    res.json({ count });
+  } catch (err) {
+    console.error('Fetch contributor count error:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 
 // 1) LOGIN: email+password → sends OTP
 app.post('/api/login', async (req, res) => {
@@ -160,112 +174,6 @@ app.post('/api/verify-otp', async (req, res) => {
 
   res.json({ token, isMain, name });
 });
-
-
-// // 3) REQUEST new admin → main admin receives OTP approval request
-// app.post('/api/request-admin', async (req, res) => {
-//   const { name, email, password } = req.body;
-//   const [exists] = await Promise.all([
-//     db.ref('admins').orderByChild('email').equalTo(email).once('value'),
-//     db.ref('pendingAdmins').orderByChild('email').equalTo(email).once('value'),
-//   ]).then(([a, p]) => [a.exists(), p.exists()]);
-
-//   if (exists) {
-//     return res.status(400).json({ error: 'Email already registered' });
-//   }
-
-//   try {
-//     const hashed = await bcrypt.hash(password, 10);
-//     const otp = generateOTP();
-
-//     await transporter.sendMail({
-//       to: process.env.MAIN_ADMIN_EMAIL,
-//       subject: 'Approve New Admin',
-//       text: `Approve new admin ${name} (${email}) with OTP: ${otp}`,
-//     });
-
-//     const key = sanitizeKey(email);
-//     await db.ref(`pendingAdmins/${key}`).set({
-//       name, email, password: hashed,
-//       otp, expires: Date.now() + 60 * 60 * 1000,
-//     });
-
-//     res.json({ message: 'Awaiting main admin approval' });
-//   } catch (err) {
-//     console.error('Request-admin error:', err);
-//     res.status(500).json({ error: 'Server error' });
-//   }
-// });
-
-// app.post('/api/request-admin', async (req, res) => {
-//   console.log('➤ [REQUEST-ADMIN] incoming:', req.body);
-
-//   const { name, email, password } = req.body;
-//   const [existsAdmins, existsPending] = await Promise.all([
-//     db.ref('admins').orderByChild('email').equalTo(email).once('value'),
-//     db.ref('pendingAdmins').orderByChild('email').equalTo(email).once('value'),
-//   ]).then(([a, p]) => [a.exists(), p.exists()]);
-
-//   console.log('➤ existsAdmins=', existsAdmins, 'existsPending=', existsPending);
-//   if (existsAdmins) {
-//     return res.status(400).json({ error: 'Email already registered' });
-//   }
-
-//   try {
-//     console.log('➤ hashing password');
-//     const hashed = await bcrypt.hash(password, 10);
-
-//     console.log('➤ generating OTP');
-//     const otp = generateOTP();
-
-//     console.log(`➤ sending email to main admin (${process.env.MAIN_ADMIN_EMAIL})`);
-//     await transporter.sendMail({
-//       to: process.env.MAIN_ADMIN_EMAIL,
-//       subject: 'Approve New Admin',
-//       text: `Approve new admin ${name} (${email}) with OTP: ${otp}`,
-//     });
-//     console.log('➤ email sent');
-
-//     const key = sanitizeKey(email);
-//     console.log('➤ writing pendingAdmins at', key);
-//     await db.ref(`pendingAdmins/${key}`).set({
-//       name,
-//       email,
-//       password: hashed,
-//       otp,
-//       expires: Date.now() + 60 * 60 * 1000,
-//     });
-//     console.log('➤ write successful');
-
-//     res.json({ message: 'Awaiting main admin approval' });
-//   } catch (err) {
-//     console.error('🔴 [REQUEST-ADMIN ERROR]:', err);
-//     return res.status(500).json({ error: err.message });
-//   }
-// });
-
-
-// // 4) VERIFY new admin by main admin OTP
-// app.post('/api/verify-admin', async (req, res) => {
-//   const { email, otp } = req.body;
-//   const key = sanitizeKey(email);
-//   const snap = await db.ref(`pendingAdmins/${key}`).once('value');
-//   const p = snap.val();
-
-//   if (!p || p.otp !== otp || Date.now() > p.expires) {
-//     return res.status(400).json({ error: 'Invalid or expired OTP' });
-//   }
-
-//   await db.ref('admins').push({
-//     name:  p.name,
-//     email: p.email,
-//     password: p.password,
-//     isMain: false,
-//   });
-//   await db.ref(`pendingAdmins/${key}`).remove();
-//   res.json({ message: 'New admin created successfully' });
-// });
-
 
 // ——————————————————————————
 // 2) REQUEST new admin → approval token
@@ -571,6 +479,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {
   try {
     await initMainAdmin();
+    await initContributorsCounter();
     console.log(`🚀 Server running on port ${PORT}`);
   } catch (err) {
     console.error('Failed to init main admin:', err);

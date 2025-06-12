@@ -8,7 +8,7 @@ const teamMembers = [
   },
   {
     name: 'Abhishek',
-    role: 'Data Engineer, UI/UX Designer & Management',
+    role: 'Data Engineer',
     imgSrc: '/abhishek.jpg',
   },
 ];
