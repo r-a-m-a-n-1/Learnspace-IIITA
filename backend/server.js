@@ -256,6 +256,7 @@ app.get('/api/approve-admin', async (req, res) => {
     password: p.password,
     isMain: false,
   });
+   await incrementContributorCount();
   await db.ref(`pendingAdmins/${pendingKey}`).remove();
 
   await transporter.sendMail({
