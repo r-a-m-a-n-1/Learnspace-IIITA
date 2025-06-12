@@ -680,9 +680,8 @@ app.post('/api/request-admin', async (req, res) => {
 });
 
 // ——————————————————————————
-// 3) APPROVE via link
+// 3) APPROVE via link (UPDATED VERSION)
 // ——————————————————————————
-// Modify the admin approval endpoint to update contributor count
 app.get('/api/approve-admin', async (req, res) => {
   const { token } = req.query;
   if (!token) return res.status(400).send('Missing token');
@@ -700,31 +699,43 @@ app.get('/api/approve-admin', async (req, res) => {
     return res.status(400).send('Token invalid or expired');
   }
 
-  // Create the new admin
-  await db.ref('admins').push({
-    name:  p.name,
-    email: p.email,
-    password: p.password,
-    isMain: false,
-  });
+  try {
+    // Create the new admin first
+    await db.ref('admins').push({
+      name: p.name,
+      email: p.email,
+      password: p.password,
+      isMain: false,
+    });
 
-  // Update contributor count (increment by 1)
-  const contributorSnap = await db.ref('contributors').once('value');
-  const currentCount = contributorSnap.val()?.count || 0;
-  await db.ref('contributors').set({ count: currentCount + 1 });
+    // Then update contributor count using transaction
+    const contributorsRef = db.ref('contributors');
+    await contributorsRef.transaction((currentData) => {
+      if (currentData === null) {
+        return { count: 1 }; // Initialize if doesn't exist
+      }
+      currentData.count = (currentData.count || 0) + 1;
+      return currentData;
+    });
 
-  await db.ref(`pendingAdmins/${pendingKey}`).remove();
+    // Clean up pending admin
+    await db.ref(`pendingAdmins/${pendingKey}`).remove();
 
-  await transporter.sendMail({
-    to: p.email,
-    subject: 'Your Admin Account Is Live!',
-    text: `Hi ${p.name},\n\nYour request has been approved. You can now log in at ${process.env.FRONTEND_URL}/admin/login.\n\n— The Team`,
-  });
+    // Send confirmation email
+    await transporter.sendMail({
+      to: p.email,
+      subject: 'Your Admin Account Is Live!',
+      text: `Hi ${p.name},\n\nYour request has been approved. You can now log in at ${process.env.FRONTEND_URL}/admin/login.\n\n— The Team`,
+    });
 
-  res.send(`
-    <h1>✅ Admin Approved</h1>
-    <p>You have successfully approved <strong>${p.email}</strong> as an admin.</p>
-  `);
+    res.send(`
+      <h1>✅ Admin Approved</h1>
+      <p>You have successfully approved <strong>${p.email}</strong> as an admin.</p>
+    `);
+  } catch (err) {
+    console.error('Approval error:', err);
+    res.status(500).send('Server error during approval');
+  }
 });
 
 
