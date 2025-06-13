@@ -1446,9 +1446,24 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 // 📁 Multer setup to handle multipart form-data
 const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const upload = multer({ 
+  storage,
+  limits: { fileSize: 100 * 1024 * 1024 } // 100MB limit
+});
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 const app = express();
 app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
@@ -1859,62 +1874,87 @@ The Admin Team
 // 📤 Upload API: POST /api/upload
 
 
-const corsOptions = {
-  origin: process.env.FRONTEND_URL,
-  credentials: true
-};
 
-
-app.post('/api/upload',
+app.post('/api/upload', 
   cors(corsOptions),
   upload.single('file'),
   async (req, res) => {
-  const { title, semester, branch, subject, year, paperType } = req.body;
-  const file = req.file;
+    const { title, semester, branch, subject, year, paperType } = req.body;
+    const file = req.file;
 
-  if (!file) {
-    return res.status(400).json({ error: 'No file uploaded' });
+    if (!file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    try {
+      // 1) Create a unique filename and temporary path
+      const tempDir = os.tmpdir();
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+      const sanitizedFilename = file.originalname.replace(/[^a-zA-Z0-9._-]/g, '-');
+      const tempFilePath = path.join(tempDir, `${uniqueSuffix}-${sanitizedFilename}`);
+      
+      // 2) Ensure the directory exists
+      await fs.promises.mkdir(tempDir, { recursive: true });
+
+      // 3) Write buffer to temporary file
+      await fs.promises.writeFile(tempFilePath, file.buffer);
+
+      // 4) Upload to Cloudinary with progress tracking
+      const uploadOptions = {
+        folder: `materials/${semester}/${branch}/${subject}/${year}/${paperType}`,
+        resource_type: 'auto',
+        chunk_size: 20 * 1024 * 1024, // 20MB chunks
+        use_filename: true,
+        unique_filename: false,
+        overwrite: true
+      };
+
+      const result = await new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_large(
+          tempFilePath,
+          uploadOptions,
+          (error, result) => {
+            if (error) reject(error);
+            else resolve(result);
+          }
+        );
+
+        // Optional: Track upload progress
+        uploadStream.on('progress', (progress) => {
+          console.log(`Upload progress: ${progress.percent}%`);
+        });
+      });
+
+      // 5) Clean up temp file
+      await fs.promises.unlink(tempFilePath).catch(err => {
+        console.error('Failed to delete temp file:', err);
+      });
+
+      // 6) Save metadata to Firebase
+      const doc = {
+        title,
+        url: result.secure_url,
+        semester,
+        branch,
+        subject,
+        year,
+        paperType,
+        uploadedAt: Date.now(),
+      };
+
+      const dbPath = `materials/${semester}/${branch}/${subject}/${year}/${paperType}`;
+      await db.ref(dbPath).push(doc);
+
+      res.json({ message: 'Upload successful', data: doc });
+    } catch (err) {
+      console.error('Upload error:', err);
+      res.status(500).json({ 
+        error: 'Upload failed',
+        details: err.message 
+      });
+    }
   }
-
-  try {
-    // 1) Write buffer to a temporary file
-    const tmpPath = path.join(
-      os.tmpdir(),
-      `${Date.now()}-${file.originalname}`
-    );
-    await fs.promises.writeFile(tmpPath, file.buffer);
-
-    // 2) Chunked upload_large to Cloudinary
-    const result = await cloudinary.uploader.upload_large(tmpPath, {
-      folder: `materials/${semester}/${branch}/${subject}/${year}/${paperType}`,
-      resource_type: 'auto',   // auto-detect raw vs. video
-      chunk_size: 6 * 1024 * 1024, // 6 MB chunks (min 5 MB)
-    });
-
-    // 3) Clean up temp file
-    await fs.promises.unlink(tmpPath);
-
-    // 📦 Save metadata to Firebase
-    const doc = {
-      title,
-      url: result.secure_url,
-      semester,
-      branch,
-      subject,
-      year,
-      paperType,
-      uploadedAt: Date.now(),
-    };
-
-    const dbPath = `materials/${semester}/${branch}/${subject}/${year}/${paperType}`;
-    await db.ref(dbPath).push(doc);
-
-    res.json({ message: 'Upload successful', data: doc });
-  } catch (err) {
-    console.error('Upload error:', err);
-    res.status(500).json({ error: 'Upload failed' });
-  }
-});
+);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {

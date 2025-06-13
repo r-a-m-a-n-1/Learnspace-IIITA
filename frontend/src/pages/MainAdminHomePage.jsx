@@ -721,6 +721,8 @@ import { Trash2, ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 import { db } from "../firebase";
  const API = import.meta.env.VITE_API_URL || window.location.origin;
 
+ 
+
 import {
   collection,
   doc,
@@ -1117,111 +1119,98 @@ export default function MainAdminHomePage() {
     setData((prev) => ({ ...prev, subject: "" }));
   }, [data.sem, data.branch]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const {
-      sem, branch, year, materialType,
-      lectureType, customType, paperType,
-      title, subject, file,
-    } = data;
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  const {
+    sem, branch, year, materialType,
+    lectureType, customType, paperType,
+    title, subject, file,
+  } = data;
 
-    const showBranch = sem !== "Semester 1";
-    const isPreviousYear = materialType === "Previous Year Paper";
-    const isLectureNotes = materialType === "Lecture Notes and Assignment";
+  const showBranch = sem !== "Semester 1";
+  const isPreviousYear = materialType === "Previous Year Paper";
+  const isLectureNotes = materialType === "Lecture Notes and Assignment";
 
-    if (!file || !year || !subject || !title || (showBranch && !branch)) {
-      return alert("Please fill in all required fields.");
+  if (!file || !year || !subject || !title || (showBranch && !branch)) {
+    return alert("Please fill in all required fields.");
+  }
+  if (isLectureNotes) {
+    if (!lectureType) return alert("Please select a Lecture Type.");
+    if (lectureType === "Other" && !customType.trim()) {
+      return alert("Please specify the 'Other' lecture type.");
     }
-    if (isLectureNotes) {
-      if (!lectureType) return alert("Please select a Lecture Type.");
-      if (lectureType === "Other" && !customType.trim()) {
-        return alert("Please specify the 'Other' lecture type.");
-      }
+  }
+
+  const finalLectureType = isLectureNotes
+    ? lectureType === "Other" ? customType.trim() : lectureType
+    : "";
+
+  try {
+    setUploading(true);
+    setUploadProgress(0);
+
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("title", title);
+    formData.append("semester", sem);
+    formData.append("branch", branch || "");
+    formData.append("subject", subject);
+    formData.append("year", year);
+    formData.append("paperType", paperType);
+
+    const response = await api.post("/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+      onUploadProgress: (progressEvent) => {
+        const percentCompleted = Math.round(
+          (progressEvent.loaded * 100) / progressEvent.total
+        );
+        setUploadProgress(percentCompleted);
+      },
+    });
+
+    const url = response.data.data.url;
+
+    // Save into Firestore
+    const yearRef = doc(db, "semesters", sem, "years", year);
+    const yearSnap = await getDoc(yearRef);
+    if (!yearSnap.exists()) {
+      await setDoc(yearRef, {});
     }
+    const matColl = collection(yearRef, "materials");
+    const matRef = doc(matColl);
+    await setDoc(matRef, {
+      title,
+      materialType,
+      paperType: isPreviousYear ? paperType : "",
+      subject,
+      branch: showBranch ? branch : "",
+      fileURL: url,
+      lectureType: finalLectureType,
+      uploadedAt: new Date().toISOString(),
+    });
 
-    const finalLectureType = isLectureNotes
-      ? lectureType === "Other" ? customType.trim() : lectureType
-      : "";
-
-    try {
-      // Build form-data to your own backend
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("title", title);
-      formData.append("semester", sem);
-      formData.append("branch", branch || "");
-      formData.append("subject", subject);
-      formData.append("year", year);
-      formData.append("paperType", paperType);
-      // (lectureType is not persisted in your backend, so skip it here)
-
-      const xhr = new XMLHttpRequest();
-     xhr.open("POST", `${API}/upload`, true);
-
-      xhr.upload.onloadstart = () => {
-        setUploading(true);
-        setUploadProgress(0);
-      };
-      xhr.upload.onprogress = (event) => {
-        if (event.lengthComputable) {
-          setUploadProgress(Math.round((event.loaded / event.total) * 100));
-        }
-      };
-      xhr.onerror = () => {
-        throw new Error("Upload failed. Please try again.");
-      };
-      xhr.onload = async () => {
-        setUploading(false);
-        setUploadProgress(0);
-        if (xhr.status !== 200 && xhr.status !== 201) {
-          const err = JSON.parse(xhr.responseText);
-          return alert(err.error || "Upload failed.");
-        }
-        const result = JSON.parse(xhr.responseText);
-        const url = result.data.url;
-
-        // Save into Firestore just like before
-        const yearRef = doc(db, "semesters", sem, "years", year);
-        const yearSnap = await getDoc(yearRef);
-        if (!yearSnap.exists()) {
-          await setDoc(yearRef, {});
-        }
-        const matColl = collection(yearRef, "materials");
-        const matRef = doc(matColl);
-        await setDoc(matRef, {
-          title,
-          materialType,
-          paperType: isPreviousYear ? paperType : "",
-          subject,
-          branch: showBranch ? branch : "",
-          fileURL: url,
-          lectureType: finalLectureType,
-          uploadedAt: new Date().toISOString(),
-        });
-
-        alert("Material uploaded!");
-        // reset form
-        setData((prev) => ({
-          ...prev,
-          branch: "",
-          subject: "",
-          year: "",
-          title: "",
-          file: null,
-          lectureType: "",
-          customType: "",
-          paperType: "Mid Sem",
-        }));
-      };
-
-      xhr.send(formData);
-    } catch (err) {
-      console.error("Upload error:", err);
-      alert("Failed to upload material.");
-      setUploading(false);
-      setUploadProgress(0);
-    }
-  };
+    alert("Material uploaded successfully!");
+    setData((prev) => ({
+      ...prev,
+      branch: "",
+      subject: "",
+      year: "",
+      title: "",
+      file: null,
+      lectureType: "",
+      customType: "",
+      paperType: "Mid Sem",
+    }));
+  } catch (err) {
+    console.error("Upload error:", err);
+    alert(err.response?.data?.error || "Failed to upload material.");
+  } finally {
+    setUploading(false);
+    setUploadProgress(0);
+  }
+};
 
   const showBranch = data.sem !== "Semester 1";
   const isPreviousYear = data.materialType === "Previous Year Paper";
