@@ -1451,11 +1451,19 @@ cloudinary.config({
 });
 
 // CORS configuration
-app.use(cors({
-  origin: ['https://adminlogin-5a98a.web.app'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+
+
+
+
+const corsOptions = {
+  origin: [
+    'https://adminlogin-5a98a.web.app', // Your frontend URL
+    'http://localhost:3000'             // For local development
+  ],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
-}));
+};
 
 // Apply middleware in correct order
 app.use(cors(corsOptions));
