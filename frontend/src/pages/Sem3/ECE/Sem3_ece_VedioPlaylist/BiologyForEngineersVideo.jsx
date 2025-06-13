@@ -1,108 +1,161 @@
+
+
+
+
+
+
+
+
 import React, { useState } from "react";
-import YouTube from "react-youtube";
 
-const BiologyForEngineersVideoPage = () => {
+const BFE = () => {
+  // RBFElace these video IDs with your actual YouTube video IDs (one for each of the 50 videos)
   const videoIDs = [
-    "_6oRqxY6O5w", "yzuoyA2EJPA", "5LCO26C-ggo", "QZi8OqYSLgU", "kSyYgXvBpQQ",
-    "9WjuLvPT_2A", "pG-IAFOiOw4", "itCTFw0d4hs", "iF7ya80h1Rs", "wGiJkeuJDcM",
-    "cwIIXBSEFX4", "WBvroWQecEI", "bJcGmEkiyz8", "HZxJtGqkJLM", "EL3fXu9FFII",
-    "NzuTxGGFcrg", "KgZR5L9jTJA", "jAH5rcWIyCE", "NCsoLIlz_lU", "bXeQILCHnVY",
-    "HnFFuXDi9p8", "qIOCtAR0Qw0", "3HoSPQmpzKc", "TH2nvOymftc", "CDKS5Se6r3Q",
-    "X7tLRj8Le-8", "qMwnGmEXBpY", "OM8zRM5v8U0", "XdmVCN8bCQs", "wmw4pbFIaV4",
-    "DoHj2cPwz8U", "X1vBZcpHDXA", "xnPmAe09KQs", "5ezk6z98wEo", "vzj4E6F1O7M",
-    "L-UcOD04rUQ", "QAawJJDWe5M", "OXMqPo1Spm4", "A0eX8tM0GLE", "MgrJMCzPJHU",
-    "9E51guuulgU", "K0Q-TaQ2ZtA", "XMr7ddjxxr8", "iwLTbgKGuI8", "videoID45",
-    "videoID46", "videoID47", "videoID48", "videoID49", "videoID50"
+    "O_bpzGe6rGA",
+    "zKnA0qLWeU0",
+    "uNMBYoghmjE",
+    "VdhED19eYgo",
+
   ];
 
+  // Provide a description for each video.
   const videoDescriptions = [
-    "Vector Space-Concept and defintion in Hindi(Lecture-1)",
-    "Vector Space-General Properties in Hindi(Lecture 2)",
-    "Vector Space-Vector Subspace in Hindi (Lecture 3)",
-    // ... your remaining descriptions here, matching index
-    "Linking linear systems to differential equations."
+    "Biology for Engineers in one shot || Engineering biology one shot || Modern Vs Traditional Biology",
+    "Biology for engineers in one shot || Classification in one shot|| Plant cell vs Animal cell",
+    "Genetics in one shot || Biology for engineers b.tech   || Meiosis vs Mitosis || Single gene disorder",
+    "Biology for engineers in one shot || Engineering biology in one shot(part-4) || Kreb Cycle",
+
   ];
 
-  const videoData = videoIDs.map((videoId, index) => ({
-    id: index + 1,
-    title: `Linear Algebra Video ${index + 1}`,
-    thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-    videoId: videoId,
-    description: videoDescriptions[index] || ""
+
+
+  const videoData = videoIDs.map((id, i) => ({
+    id: i + 1,
+    title: `BFE Video ${i + 1}`,
+    thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    videoUrl: `https://www.youtube.com/embed/${id}`,
+    description: videoDescriptions[i] || ""
   }));
 
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const openVideo = (video) => {
-    setSelectedVideo(video);
-  };
+  const openVideo = (v) => setSelectedVideo(v);
+  const closeVideo = () => setSelectedVideo(null);
 
-  const closeVideo = () => {
-    setSelectedVideo(null);
-  };
-
-  const playerOptionsLarge = {
-    height: "360",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      rel: 0,
-      controls: 1,
-    },
-  };
-
-  const playerOptionsMini = {
-    height: "180",
-    width: "320",
-    playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      rel: 0,
-      controls: 1,
-    },
-  };
-
-  return (
-    <div className="bg-black text-white w-full min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-center mb-8">
-        Biology For Engineers Videos
-      </h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {videoData.map((video) => (
+  const renderSection = (key, title, start, end) => (
+    <section id={key} className="mb-12">
+      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {videoData.slice(start, end).map((video) => (
           <div
             key={video.id}
-            className="bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer flex flex-col items-center transform hover:scale-105 transition duration-300"
             onClick={() => openVideo(video)}
+            className="bg-gray-800 rounded-lg shadow-lg cursor-pointer transform hover:scale-[1.02] transition duration-300 flex flex-row items-start p-3 sm:flex-col sm:p-4"
           >
-            <img
-              src={video.thumbnail}
-              alt={video.title}
-              className="w-full h-32 object-cover rounded mb-2"
-            />
-            <h2 className="text-xl font-semibold text-center">{video.title}</h2>
-            <p className="text-gray-400 text-center text-sm">{video.description}</p>
+            <div className="flex-shrink-0 w-2/5 sm:w-full">
+              <img
+                src={video.thumbnail}
+                alt={video.title}
+                className="w-full aspect-video object-cover rounded"
+              />
+            </div>
+            <div className="flex-grow min-w-0 pl-3 sm:pl-0 sm:pt-3">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 line-clamp-2">
+                {video.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-400 line-clamp-2">
+                {video.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>
+    </section>
+  );
 
-      {/* Mini floating player at bottom-right */}
-      {selectedVideo && (
-        <div className="fixed bottom-4 right-4 z-50 w-[320px] bg-gray-900 rounded-lg shadow-xl">
-          <div className="relative">
+  return (
+    <div className="flex bg-black text-white w-full min-h-screen">
+      {/* SIDEBAR */}
+      {sidebarOpen && (
+        <aside className="fixed top-0 right-0 h-full w-60 bg-gray-900 border-l border-gray-700 p-4 overflow-y-auto z-40">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-xl font-bold leading-none">Sections</h1>
             <button
-              onClick={closeVideo}
-              className="absolute top-1 right-2 text-white text-2xl font-bold z-10"
-              aria-label="Close video player"
+              onClick={() => setSidebarOpen(false)}
+              className="text-white text-xl font-bold leading-none hover:text-red-500 transition"
             >
               ✖
             </button>
-            <YouTube videoId={selectedVideo.videoId} opts={playerOptionsMini} />
           </div>
-          <div className="p-2">
-            <h2 className="text-sm font-semibold">{selectedVideo.title}</h2>
-            <p className="text-gray-400 text-xs">{selectedVideo.description}</p>
+          <nav className="space-y-4">
+            {[
+              ["All Videos", "All Videos", 0, 212]
+
+            ].map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setSelectedSection(key)}
+                className={`w-full text-left px-3 py-2 rounded transition-all duration-500 ${selectedSection === key
+                    ? 'bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text'
+                    : 'text-white hover:bg-gradient-to-r hover:from-purple-400 hover:via-pink-500 hover:to-red-500 hover:bg-clip-text hover:text-transparent'
+                  }`}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+        </aside>
+      )}
+
+      {/* CONTENT */}
+      <main className={`flex-1 pt-4 p-4 sm:p-8 ${sidebarOpen ? 'pr-64' : ''}`}>
+        {/* HEADER WITH INLINE TOGGLE */}
+        <div className="flex items-center justify-center mb-6 sm:mb-8 relative">
+          <h1 className="text-3xl sm:text-4xl font-bold">Biology for Engineers - Video Lectures</h1>
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="absolute right-0 text-3xl sm:text-4xl text-white hover:text-gray-300 transition"
+          >
+            {sidebarOpen ? '✖' : '⋮'}
+          </button>
+        </div>
+
+        {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 212)}
+
+
+        {selectedSection === "All Videos" && renderSection("All Videos", "All Videos ", 0, 212)}
+
+      </main>
+
+      {/* VIDEO MODAL */}
+      {selectedVideo && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 p-4 sm:p-6 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4 gap-2">
+              <h2 className="text-xl sm:text-2xl font-semibold truncate">
+                {selectedVideo.title}
+              </h2>
+              <button
+                onClick={closeVideo}
+                className="text-white text-lg hover:text-red-500 transition flex-shrink-0"
+              >
+                ✖
+              </button>
+            </div>
+            <div className="w-full aspect-video mb-4">
+              <iframe
+                className="w-full h-full rounded"
+                src={selectedVideo.videoUrl}
+                title={selectedVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p className="text-gray-300 text-sm sm:text-base">
+              {selectedVideo.description}
+            </p>
           </div>
         </div>
       )}
@@ -110,4 +163,4 @@ const BiologyForEngineersVideoPage = () => {
   );
 };
 
-export default BiologyForEngineersVideoPage;
+export default BFE;
