@@ -1,108 +1,563 @@
+
+
+
+
+
+
+
+
 import React, { useState } from "react";
-import YouTube from "react-youtube";
 
-const ComputerNetworkVideoVideoPage = () => {
+const CN = () => {
+  // RLAlace these video IDs with your actual YouTube video IDs (one for each of the 50 videos)
   const videoIDs = [
-    "_6oRqxY6O5w", "yzuoyA2EJPA", "5LCO26C-ggo", "QZi8OqYSLgU", "kSyYgXvBpQQ",
-    "9WjuLvPT_2A", "pG-IAFOiOw4", "itCTFw0d4hs", "iF7ya80h1Rs", "wGiJkeuJDcM",
-    "cwIIXBSEFX4", "WBvroWQecEI", "bJcGmEkiyz8", "HZxJtGqkJLM", "EL3fXu9FFII",
-    "NzuTxGGFcrg", "KgZR5L9jTJA", "jAH5rcWIyCE", "NCsoLIlz_lU", "bXeQILCHnVY",
-    "HnFFuXDi9p8", "qIOCtAR0Qw0", "3HoSPQmpzKc", "TH2nvOymftc", "CDKS5Se6r3Q",
-    "X7tLRj8Le-8", "qMwnGmEXBpY", "OM8zRM5v8U0", "XdmVCN8bCQs", "wmw4pbFIaV4",
-    "DoHj2cPwz8U", "X1vBZcpHDXA", "xnPmAe09KQs", "5ezk6z98wEo", "vzj4E6F1O7M",
-    "L-UcOD04rUQ", "QAawJJDWe5M", "OXMqPo1Spm4", "A0eX8tM0GLE", "MgrJMCzPJHU",
-    "9E51guuulgU", "K0Q-TaQ2ZtA", "XMr7ddjxxr8", "iwLTbgKGuI8", "videoID45",
-    "videoID46", "videoID47", "videoID48", "videoID49", "videoID50"
+
+    "H4ystojVBak",
+    "20BYqRtbyOM",
+    "-xUUBlU2pr8",
+    "psBGrC5uVo4",
+    "wVxS3OQzwDQ",
+    "IVgCCborOkI",
+    "emhM7oVOcf0",
+    "dr_kgC6l7-o",
+    "rzTJadi77S0",
+    "IDPHqvNSvXc",
+    "SMPUOeVcgOA",
+    "rllri0vfuVQ",
+    "zc_2UFgtq5g",
+    "r-CmWgwYk0Y",
+    "vZtjF9cnhZY",
+    "b1BMfwsmLYc",
+    "eW0l70Irezs",
+    "HQpAaSDh2jI",
+    "ZjxCbi3lOTM",
+    "Fme8lTKReiE",
+    "aa72eMhAr8s",
+    "tivleJzBXag",
+    "dVxBkjC3wzo",
+    "EaVoDJkpxtc",
+    "AEn73PHoRzw",
+    "Qz8of26x8-E",
+    "Da-88dbwc3M",
+    "ItGMMyO9QoQ",
+    "pMr1Mz9gau4",
+    "lOIJIAHDy08",
+    "utnjyCMKA5M",
+    "4NacUO_Q7SI",
+    "dmXT054F1_I",
+    "ZeOfFnUdDP4",
+    "UlufDc83l1c",
+    "za87oqLhGaI",
+    "VQ1kpS4mboc",
+    "qaqVSPcRcPM",
+    "hb8dLXuPrt8",
+    "5R0DGCV7hvQ",
+    "hBg_3tBTc0s",
+    "5SN-dti0ZLI",
+    "TwxJyf7YYc8",
+    "WRwQsG2r8os",
+    "Au7HWvvSlrI",
+    "0jbqVF5WapY",
+    "yD-2udm2enE",
+    "wGBBQF8C3mU",
+    "VEKXF7d-lcQ",
+    "HSkipNZ0oSE",
+    "QU5jP5oWpvA",
+    "hjjoKV5K65U",
+    "Ejat-wKeiiY",
+    "cbOint2AFxo",
+    "TFtT3Mbm2g8",
+    "I_QCW66FjE8",
+    "-Toc0_GNwBw",
+    "Wp_8bhfGf7g",
+    "FSdBqWPSxCo",
+    "_qPDtjPItYQ",
+    "hAdIFcXDa2Y",
+    "4LOadXjVyuk",
+    "NAC0oUTxPfk",
+    "FVsGxXxrj4o",
+    "Qns4dSnhb_Y",
+    "ijVfx_JtTyw",
+    "2fcnfPNKgJ0",
+    "SvoZRFm4REQ",
+    "s9sClMNRc-g",
+    "9BT96f0nzKg",
+    "2JIbcSvSSuI",
+    "cz8giQ1yNcM",
+    "9nsfiIewBaM",
+    "EWrqgxhC8Hk",
+    "NDHGX202aBk",
+    "wuEwtxLI5kM",
+    "MJySdO0P2qY",
+    "V392AJN2cIs",
+    "X4OS5Yhp3hw",
+    "BcwlIdvjahI",
+    "_Ec0aJP2iUc",
+    "KBtKEeH8fbU",
+    "GbT3wUmb1kU",
+    "tyPaVSU8u2w",
+    "P_de9GrLxMQ",
+    "FE_cqP-O3GU",
+    "Qa661qkRQsM",
+    "XPWpluQcxKw",
+    "WTNlbxrWg5c",
+    "rvoZYxyciiI",
+    "Jn2rpiSMfFc",
+    "kwv7wRU57PY",
+    "nnVSSvnl8Uw",
+    "-N9Id9Tsl4c",
+    "1rWBS9K3KgY",
+    "EjycuQTruhA",
+    "ZlwsfP4X4n4",
+    "uhLU1A1I1Jc",
+    "rxKjoYRZ7cU",
+    "jHZZX__GOxw",
+    "JqL1yha2XyE",
+    "6F90LZs9haA",
+    "p8xU9cx8_MI",
+    "C-kHJKg5-JE",
+    "xFx3IClWMMU",
+    "NMktoSD5WE0",
+    "zPYS4dX7trI",
+    "5PmMSfLIk3E",
+    "7oRACpnorCs",
+    "g8h4Z8fl2Ks",
+    "PKQVHEv8G5M",
+    "kTuP4-M32MA",
+    "DFM3UD6ggyI",
+    "YxJaNcENzWE",
+    "md6d6YbT-cE",
+    "NPqQQdrkP4w",
+    "zjIbfg7nDUU",
+    "nUFhIL64RPY",
+    "4h3o2quE0k0",
+    "dm8FOxoFdIQ",
+    "mtrFHPD2HGY",
+    "98kx4Qg48kM",
+    "pZrHnE_J7tE",
+    "EIntJdqhENc",
+    "72Kmf2CEYvI",
+    "kUhlUcFWkss",
+    "zllKNhJbpmE",
+    "ZF9CKK7Z_Yc",
+    "cPPZ5EdFiSM",
+    "-nEmo6GWBPI",
+    "zgAAVQQwpGU",
+    "CqP3AwhVA10",
+    "kl7jC9roquA",
+    "rYDZaRDr6pc",
+    "iMCOc6mJLcs",
+    "lqM-5XI23RY",
+    "eU_OGoKGRGY",
+    "Zhw_t9e26Qo",
+    "7XSrOoc8NyE",
+    "Bbppmw6R5jw",
+    "DlU4EKc3r6o",
+    "HLUFtgYyn_Q",
+    "y9JQOHlTdPw",
+    "NoP9SIdQ4Ms",
+    "vLlAfmFCpN4",
+    "EylASh99dhA",
+    "HN7rzz2Bvso",
+    "lIxyoYnvv0k",
+    "3w7kMdARvJU",
+    "N9mQcbQh11c",
+    "1opGLyjYKrk",
+    "rNBj0VxPO8g",
+    "nOGp0HIuBLM",
+    "9nnS6rqkfCM",
+    "LxC9kD7iJ0s",
+    "oOgo3xDU5N0",
+    "pvlNZBX_yqU",
+    "cNC3KEDn1qU",
+    "X_7JvbaeLt4",
+    "kOTsp0oEVTw",
+    "OP5au9iYdt0",
+    "JGjkeS-QF4c",
+    "jx4AT-3Pgss",
+    "Fk-KWET7Hd8",
+    "CHpVkMy-Twk",
+    "wEmBjqDVSTQ",
+    "7Dz5Vb06gd4",
+    "acItxAva88k",
+    "l9tC4Q1WrmA",
+    "rDU8XLz9ksg",
+    "E0te6TDYRtc",
+    "WBcu_N-3DN0",
+    "siK2EhZJMec",
+    "FvShu5QkE1o",
+    "PukvL3FOLdk",
+    "x2vXUjev1AU",
+    "ew85RfBxGs8",
+    "11M4AsUOe6w",
+    "AQTXyzFvq6g",
+    "Cbz_YzfYtoU",
+    "D85YO7p1xOY",
+    "5TctAl1cIMg",
+    "3TBS0hoMWEg",
+    "qjmuD5F7JDU",
+    "ByOpFb6EW50",
+    "KcqQmj0L93A",
+    "RWcmZQojqEE",
+    "jrlFL8s2BCE",
+    "Z_wAqctBwiM",
+    "ofVkvxGIGgg",
+    "SI6L8c8uPO4",
+    "uyITvcUbK_s",
+    "AIwWBPtGfaM",
+    "FW-8pyBQXu4",
+    "kW5kxF1eJlc",
+    "7l40_gtbBpg",
+    "ImdqjILRNu0",
+    "tvrBN7qLeVY",
+    "Wspi2-2gEz0",
+    "eABQ5vhnABE",
+    "LarLNNSxKmE",
+    "W3jdgCRL42w",
+
   ];
 
+  // Provide a description for each video.
   const videoDescriptions = [
-    "Vector Space-Concept and defintion in Hindi(Lecture-1)",
-    "Vector Space-General Properties in Hindi(Lecture 2)",
-    "Vector Space-Vector Subspace in Hindi (Lecture 3)",
-    // ... your remaining descriptions here, matching index
-    "Linking linear systems to differential equations."
+
+    "1. intro to computer networks",
+    "YouTube VS Paid Course 🤔💭",
+    "92. csma/cd",
+    "Computer Network Detailed Syllabus topic wise | Gate CSE",
+    "1. intro to computer networks",
+    "2. osi model in hindi",
+    "3. Physical layer in computer networks in hindi | Functions of Physical layer | OSI",
+    "4. types of addresses in networking",
+    "5. Data link layer in computer Networks and its Responsibilities",
+    "6. Network Layer | Responsibilities of Network Layer | OSI Model | Computer Networks",
+    "7. Transport Layer | Responsibilities of Transport Layer | OSI Model | Computer Networks",
+    "8. Session Layer of OSI model | Session layer functions in Hindi",
+    "9. functions of presentation and application layer|osi model",
+    "10. why OSI model failed",
+    "11. intro to TCP/IP model",
+    "12. introduction to IP",
+    "13. supporting protocols of IP",
+    "14. INTRO TO TRANSPORT LAYER PROTOCOLS",
+    "15. introduction to signals",
+    "16. simple analog signals",
+    "17. composite analog signals",
+    "18. digital signals",
+    "19. signal encoding techniques",
+    "20. Digital data to Digital signal conversion",
+    "21. unipolar NRZ",
+    "22. polar NRZ L and NRZ I",
+    "23. gate 2006 question on 4B/5B scheme",
+    "24. RZ technique",
+    "25. manchester encoding and differential manchester encoding",
+    "26. gate 2007 question on mechester encoding",
+    "27. bit rate and baud rate",
+    "28. serial vs parallel transmission",
+    "29. gate 2004 question on serial transmission",
+    "30. gate 2004 question 2 on serial transmission",
+    "31. gate 2008 question on serial transmission",
+    "32. BW ,THROUGHPUT AND DELAY",
+    "33. numerical on delay",
+    "34. gate 2015 question on delay",
+    "35. intro to multiplexing",
+    "36. introduction to FDM and WDM",
+    "37. introduction to TDM",
+    "38.  gate 2007 question on TDM",
+    "39. gate 2005 question on TDM",
+    "40. ERROR DETECTION VS CORRECTION",
+    "41. logic for error detection",
+    "42. hamming distance",
+    "43. minimum hamming distance to detect t bit error",
+    "44. linear block codes",
+    "45. simple parity check code",
+    "46. 2D parity check code",
+    "47. gate 2008 question on 2d parity check code",
+    "48. cyclic codes",
+    "49. introduction to CRC",
+    "50. polynomial notation in CRC",
+    "51. choosing divisor in CRC",
+    "52. gate 2005 question on CRC",
+    "53. gate 2007 question on CRC",
+    "54(1). checksum",
+    "54(2). hamming codes",
+    "54(3). GATE 2021 question on hamming codes",
+    "55. framing",
+    "56. flow and error control",
+    "57. stop and wait",
+    "58. question on stop and wait",
+    "59. gate 2006 question on stop and wait",
+    "60. efficiency and throughput of stop and wait",
+    "61. piggybacking",
+    "62. gate 2005 & 2015 question on stop and wait",
+    "63. gate 2015 question on stop and wait",
+    "64. gate 2016 question on stop and wait",
+    "65. gate 2017 question on stop and wait",
+    "66. capacity of link",
+    "67. sliding window protocol",
+    "68. gate 2003 question on sliding window protocol",
+    "69. gate 2006 question on sliding window protocol",
+    "70. gate 2007 question on sliding window protocol",
+    "71. gate 2009 question on sliding window protocol",
+    "72. implementation of sliding window protocol",
+    "73. go back n ARQ",
+    "74. gate 2004 question on gbn",
+    "75. gate 2004 question on GBN",
+    "76. gate 2008 question on gbn",
+    "77. gate 2006 question on gbn",
+    "78. gate 2015 question on gbn",
+    "79. selective repeat ARQ protocol",
+    "80. gate 2016 question on selective repeat",
+    "81. gate 2012 question on pipelining",
+    "82. multiple access protocols",
+    "85. vulnerable time of aloha",
+    "83. random access protocols",
+    "84. aloha",
+    "86. throughput of aloha",
+    "87. slotted aloha",
+    "88. gate 2007 question on slotted LAN",
+    "89. gate 2015 question on slotted LAN",
+    "90. csma introduction",
+    "91. persistence methods in csma",
+    "92. csma/cd",
+    "93. NUMERICALS ON CSMA CD",
+    "98. CSMA/CA",
+    "94. gate 2004 question on csma",
+    "95. gate 2013 and 2015 question on csma",
+    "96. gate 2018 question on csma",
+    "97. efficiency of csma",
+    "99. controlled access protocols",
+    "100. reservation",
+    "101. polling",
+    "102. gate 2007 question on polling",
+    "103. token passing",
+    "104. ethernet introduction",
+    "105. ethernet frame format",
+    "106. connecting devices",
+    "107. passive hub",
+    "108. repeater and hub",
+    "109. bridge",
+    "110. switching techniques in networking(circuit switching, message switching, packet switching)",
+    "111. layer 2 switch",
+    "112. router and layer 3 switch",
+    "113. gateway",
+    "114. broadcast domain and collision domain",
+    "115. introduction to IP addressing",
+    "116. introduction to class full addressing",
+    "117. concept of net mask",
+    "118. subnetting part 1",
+    "119. subnetting part 2",
+    "120. practice questions on subnetting (part 1)",
+    "121. practice questions on subnetting part 2",
+    "122. practice questions on subnetting part 3",
+    "123. subnetting (part 3) vlsm",
+    "124. supernetting",
+    "125. gate 2003,2004,2005 questions on IP addressing",
+    "126. gate 2006,2007,2010,2019 questions on IP addressing",
+    "127. class less addressing introduction",
+    "128. subnetting in class less addressing",
+    "129. Supernetting in class less addressing",
+    "gate 2006,2008,2012 questions on IP addressing",
+    "special addresses in ipv4 addressing scheme",
+    "ipv4 header part 1",
+    "ipv4 header part 2",
+    "Fragmentation of IPv4 Datagram | GATE 2023 | Part 1",
+    "Fragmentation of IPv4 Datagram | GATE 2023 | Part 2| Identification | flags | fragmentation offset",
+    "Fragmentation of IPv4 Datagram | practice questions | GATE 2023 | Part 3",
+    "Fragmentation of IPv4 Datagram | Actual Process | GATE 2023 | Part 4",
+    "Fragmentation of IPv4 Datagram | Few important questions | GATE 2023 | Part 5",
+    "Option in IPv4 - Internetworking Layer | IPV4 OPTIONS | GATE 2023",
+    "ARP Explained- Address Resolution Protocol | Network Layer",
+    "Reverse Address Resolution Protocol RARP Protocol in Computer Networks | GATE 2023",
+    "What is ICMP ? | Internet Control Message Protocol (in Hindi) | Part 1 | GATE 2023",
+    "What is ICMP ? | Internet Control Message Protocol (in Hindi) | Part 2 | GATE 2023",
+    "Delivery forwarding and routing | network layer | GATE 2023 | PART 1",
+    "Delivery forwarding and routing | network layer | GATE 2023 | PART 2",
+    "Delivery forwarding and routing | network layer | GATE 2023 | PART 3",
+    "Delivery forwarding and routing | network layer | GATE 2023 | PART 4 | decreasing size of R.T.",
+    "Delivery forwarding and routing | network layer | GATE 2023 | PART 5 | Routing algorithms",
+    "Distance vector routing algorithm in hindi | Computer Networks | part 1 | GATE 2023",
+    "Distance vector routing algorithm in hindi | Computer Networks | part 2 | GATE 2023",
+    "Distance vector routing algorithm in hindi | Computer Networks | part 3 | GATE QUESTIONS",
+    "Distance vector routing algorithm in hindi | Computer Networks | part 4 | Count to infinity problem",
+    "Distance vector routing algorithm | Computer Networks | part 5 | Count to infinity problem solution",
+    "Link state routing in computer networks in Hindi (PART 1)| GATE 2023",
+    "Link state routing in computer networks in Hindi (PART 2)| GATE 2023",
+    "Introduction to transport layer | Transport Layer | GATE 2023",
+    "UDP | User datagram protocol | PART 1(INTRODUCTION) | GATE 2023",
+    "UDP | User datagram protocol | PART 2(UDP HEADER) | GATE 2023",
+    "UDP | User datagram protocol | PART 3(WORKING AND USES) | GATE 2023",
+    "TCP: Transmission control protocol | TCP Header | Transport layer | part -1",
+    "TCP: Transmission control protocol | TCP SEQUENCE NUMBER  | Transport layer | part -2",
+    "TCP: Transmission control protocol | TCP wrap around time  | Transport layer | part -2",
+    "TCP: Transmission control protocol | TCP Header | Transport layer | part -4",
+    "TCP: Transmission control protocol | TCP connection establishment | Transport layer | part -5",
+    "TCP: Transmission control protocol | TCP data tranfer | Transport layer | part -6",
+    "TCP: Transmission control protocol | TCP connection termination | Transport layer | part -7",
+    "TCP: Transmission control protocol | TCP state transition diagram | Transport layer | part -8",
+    "TCP: Transmission control protocol | TCP state transition diagram | Transport layer | part -9",
+    "TCP: Transmission control protocol | TCP state transition diagram | Transport layer | part -10",
+    "TCP: Transmission control protocol | TCP state transition diagram | Transport layer | part -11",
+    "TCP: Transmission control protocol | TCP state transition diagram | Transport layer | part -12",
+    "TCP: Transmission control protocol | TCP system calls | Transport layer | part -13",
+    "TCP: Transmission control protocol | TCP system calls | Transport layer | part -14",
+    "TCP: Transmission control protocol | TCP push flag | PSH | Transport layer | part -15",
+    "TCP: Transmission control protocol | TCP URG and RST flag | Transport layer | part -16",
+    "TCP: Transmission control protocol | TCP flow control | Transport layer | part -17",
+    "TCP: Transmission control protocol | TCP options | Transport layer | part -18",
+    "TCP: Transmission control protocol | TCP retransmission | Transport layer | part -19",
+    "Leaky Bucket Algorithm In Hindi | Congestion Control In Hindi | Leaky Bucket | Part 1",
+    "Leaky Bucket Algorithm In Hindi | Congestion Control In Hindi | Leaky Bucket | Part 2",
+    "Token Bucket Algorithm In Hindi | Congestion Control In Hindi | Token Bucket",
+    "TCP CONGESTION CONTROL | AIMD | Additive Increase Multiplicative Decrease | part 1",
+    "TCP CONGESTION CONTROL | AIMD | Additive Increase Multiplicative Decrease | part 2",
+    "TCP CONGESTION CONTROL | AIMD | Additive Increase Multiplicative Decrease | part 3",
+    "TCP TIMERS | GATE 2023 | part 1",
+    "TCP TIMERS | GATE 2023 | part 2",
+    "TCP TIMERS | GATE 2023 | part 3",
+    "SILLY WINDOW SYNDROME IN TCP | NEGAL'S SOLUTION | CLARK'S SOLUTION",
+    "Domain Name System (DNS) in computer Networks | part 1",
+    "Domain Name System (DNS) in computer Networks | part 2",
+    "Domain Name System (DNS) in computer Networks | part 3(DNS working)",
+    "EMAIL (Part -I) | Computer Networks",
+    "EMAIL (Part -2) | Computer Networks",
+    "EMAIL (Part -3) | Computer Networks",
+    "FTP | FILE TRANSFER PROTOCOL | Computer Networks | GATE 2023",
+    "FTP | FILE TRANSFER PROTOCOL | Computer Networks | GATE 2023 | PART 2",
+    "HTTP | Hyper text transfer protocol | computer networks | GATE 2023",
+    "Application Layer Most Important Points | GATE PYQs of APPLICATION LAYER | GATE 2023",
+    "Finally Computer Networks Completed | GATE 2023",
+    "",
+
   ];
 
-  const videoData = videoIDs.map((videoId, index) => ({
-    id: index + 1,
-    title: `Linear Algebra Video ${index + 1}`,
-    thumbnail: `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`,
-    videoId: videoId,
-    description: videoDescriptions[index] || ""
+
+
+  const videoData = videoIDs.map((id, i) => ({
+    id: i + 1,
+    title: `CN Video ${i + 1}`,
+    thumbnail: `https://img.youtube.com/vi/${id}/hqdefault.jpg`,
+    videoUrl: `https://www.youtube.com/embed/${id}`,
+    description: videoDescriptions[i] || ""
   }));
 
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [selectedSection, setSelectedSection] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const openVideo = (video) => {
-    setSelectedVideo(video);
-  };
+  const openVideo = (v) => setSelectedVideo(v);
+  const closeVideo = () => setSelectedVideo(null);
 
-  const closeVideo = () => {
-    setSelectedVideo(null);
-  };
-
-  const playerOptionsLarge = {
-    height: "360",
-    width: "100%",
-    playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      rel: 0,
-      controls: 1,
-    },
-  };
-
-  const playerOptionsMini = {
-    height: "180",
-    width: "320",
-    playerVars: {
-      autoplay: 1,
-      modestbranding: 1,
-      rel: 0,
-      controls: 1,
-    },
-  };
-
-  return (
-    <div className="bg-black text-white w-full min-h-screen p-8">
-      <h1 className="text-4xl font-bold text-center mb-8">
-      Computer Network Videos
-      </h1>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-        {videoData.map((video) => (
+  const renderSection = (key, title, start, end) => (
+    <section id={key} className="mb-12">
+      <h2 className="text-2xl font-bold mb-4">{title}</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {videoData.slice(start, end).map((video) => (
           <div
             key={video.id}
-            className="bg-gray-800 p-4 rounded-lg shadow-lg cursor-pointer flex flex-col items-center transform hover:scale-105 transition duration-300"
             onClick={() => openVideo(video)}
+            className="bg-gray-800 rounded-lg shadow-lg cursor-pointer transform hover:scale-[1.02] transition duration-300 flex flex-row items-start p-3 sm:flex-col sm:p-4"
           >
-            <img
-              src={video.thumbnail}
-              alt={video.title}
-              className="w-full h-32 object-cover rounded mb-2"
-            />
-            <h2 className="text-xl font-semibold text-center">{video.title}</h2>
-            <p className="text-gray-400 text-center text-sm">{video.description}</p>
+            <div className="flex-shrink-0 w-2/5 sm:w-full">
+              <img
+                src={video.thumbnail}
+                alt={video.title}
+                className="w-full aspect-video object-cover rounded"
+              />
+            </div>
+            <div className="flex-grow min-w-0 pl-3 sm:pl-0 sm:pt-3">
+              <h3 className="text-sm sm:text-base font-semibold mb-1 line-clamp-2">
+                {video.title}
+              </h3>
+              <p className="text-xs sm:text-sm text-gray-400 line-clamp-2">
+                {video.description}
+              </p>
+            </div>
           </div>
         ))}
       </div>
+    </section>
+  );
 
-      {/* Mini floating player at bottom-right */}
-      {selectedVideo && (
-        <div className="fixed bottom-4 right-4 z-50 w-[320px] bg-gray-900 rounded-lg shadow-xl">
-          <div className="relative">
+  return (
+    <div className="flex bg-black text-white w-full min-h-screen">
+      {/* SIDEBAR */}
+      {sidebarOpen && (
+        <aside className="fixed top-0 right-0 h-full w-60 bg-gray-900 border-l border-gray-700 p-4 overflow-y-auto z-40">
+          <div className="flex items-center justify-between mb-6">
+            <h1 className="text-xl font-bold leading-none">Sections</h1>
             <button
-              onClick={closeVideo}
-              className="absolute top-1 right-2 text-white text-2xl font-bold z-10"
-              aria-label="Close video player"
+              onClick={() => setSidebarOpen(false)}
+              className="text-white text-xl font-bold leading-none hover:text-red-500 transition"
             >
               ✖
             </button>
-            <YouTube videoId={selectedVideo.videoId} opts={playerOptionsMini} />
           </div>
-          <div className="p-2">
-            <h2 className="text-sm font-semibold">{selectedVideo.title}</h2>
-            <p className="text-gray-400 text-xs">{selectedVideo.description}</p>
+          <nav className="space-y-4">
+            {[
+              ["All Videos", "All Videos", 0, 220]
+
+            ].map(([key, label]) => (
+              <button
+                key={key}
+                onClick={() => setSelectedSection(key)}
+                className={`w-full text-left px-3 py-2 rounded transition-all duration-500 ${selectedSection === key
+                    ? 'bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 text-transparent bg-clip-text'
+                    : 'text-white hover:bg-gradient-to-r hover:from-purple-400 hover:via-pink-500 hover:to-red-500 hover:bg-clip-text hover:text-transparent'
+                  }`}
+              >
+                {label}
+              </button>
+            ))}
+          </nav>
+        </aside>
+      )}
+
+      {/* CONTENT */}
+      <main className={`flex-1 pt-4 p-4 sm:p-8 ${sidebarOpen ? 'pr-64' : ''}`}>
+        {/* HEADER WITH INLINE TOGGLE */}
+        <div className="flex items-center justify-center mb-6 sm:mb-8 relative">
+          <h1 className="text-3xl sm:text-4xl font-bold">CN - Video Lectures</h1>
+          <button
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            className="absolute right-0 text-3xl sm:text-4xl text-white hover:text-gray-300 transition"
+          >
+            {sidebarOpen ? '✖' : '⋮'}
+          </button>
+        </div>
+
+        {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 220)}
+
+
+        {selectedSection === "All Videos" && renderSection("All Videos", "All Videos ", 0, 220)}
+
+      </main>
+
+      {/* VIDEO MODAL */}
+      {selectedVideo && (
+        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-4">
+          <div className="bg-gray-900 p-4 sm:p-6 rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-center mb-4 gap-2">
+              <h2 className="text-xl sm:text-2xl font-semibold truncate">
+                {selectedVideo.title}
+              </h2>
+              <button
+                onClick={closeVideo}
+                className="text-white text-lg hover:text-red-500 transition flex-shrink-0"
+              >
+                ✖
+              </button>
+            </div>
+            <div className="w-full aspect-video mb-4">
+              <iframe
+                className="w-full h-full rounded"
+                src={selectedVideo.videoUrl}
+                title={selectedVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+            <p className="text-gray-300 text-sm sm:text-base">
+              {selectedVideo.description}
+            </p>
           </div>
         </div>
       )}
@@ -110,4 +565,4 @@ const ComputerNetworkVideoVideoPage = () => {
   );
 };
 
-export default ComputerNetworkVideoVideoPage;
+export default CN;
