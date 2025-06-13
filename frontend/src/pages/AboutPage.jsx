@@ -384,7 +384,7 @@ const AboutPage = () => {
               className="text-sm md:text-base cursor-pointer hover:underline"
               onClick={() => navigate('/techtitanium-team')}
             >
-              by Platinum Team
+              by LearnSpace Team
             </p>
           </div>
 
@@ -404,7 +404,7 @@ const AboutPage = () => {
           {/* Copyright Info */}
           <div className="flex items-center text-white space-x-1">
             <FaCopyright className="text-white text-xs" />
-            <p className="text-xs">2024 Platinum. All rights reserved.</p>
+            <p className="text-xs">2025 LearnSpace-IIITA. All rights reserved.</p>
           </div>
         </div>
       </footer>

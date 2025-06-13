@@ -15,29 +15,53 @@ const teamMembers = [
 
 const TechTitaniumTeam = () => {
   return (
-    <div className="w-full h-screen bg-gray-900 flex flex-col justify-center items-center overflow-hidden relative">
-      <h1 className="text-5xl font-bold mb-12 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text animate-fadeIn">
-        LearnSpace Team
-      </h1>
-      <div className="w-full max-w-4xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-12">
+    <div className="min-h-screen w-full bg-gray-900 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 relative">
+      {/* Header */}
+      <div className="w-full max-w-6xl text-center mb-8 sm:mb-12">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text animate-fadeIn">
+          LearnSpace Team
+        </h1>
+        <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
+          The brilliant minds behind your academic success
+        </p>
+      </div>
+
+      {/* Team Grid */}
+      <div className="w-full max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
           {teamMembers.map((member, index) => (
             <div
               key={index}
-              className="bg-gray-800 bg-opacity-80 backdrop-blur-lg p-8 rounded-2xl shadow-2xl transform transition-all duration-500 hover:scale-110 hover:-translate-y-2 hover:rotate-1 animate-fadeIn"
+              className="bg-gray-800 bg-opacity-80 backdrop-blur-lg p-6 sm:p-8 rounded-xl sm:rounded-2xl shadow-lg transform transition-all duration-300 hover:scale-[1.02] hover:-translate-y-1 hover:shadow-xl"
             >
-              <div className="w-32 h-32 mx-auto mb-6">
-                <img
-                  src={member.imgSrc}
-                  alt={member.name}
-                  className="w-full h-full object-cover rounded-full border-4 border-green-500 shadow-lg"
-                />
+              <div className="flex flex-col items-center">
+                {/* Avatar */}
+                <div className="w-24 h-24 sm:w-32 sm:h-32 mb-4 sm:mb-6 relative">
+                  <img
+                    src={member.imgSrc}
+                    alt={member.name}
+                    className="w-full h-full object-cover rounded-full border-4 border-green-500 shadow-md"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = '/default-avatar.jpg';
+                    }}
+                  />
+                </div>
+                
+                {/* Details */}
+                <div className="text-center">
+                  <h2 className="text-xl sm:text-2xl font-semibold text-white">{member.name}</h2>
+                  <p className="text-green-400 mt-1 sm:mt-2 text-base sm:text-lg">{member.role}</p>
+                </div>
               </div>
-              <h2 className="text-2xl font-semibold text-center">{member.name}</h2>
-              <p className="text-center text-green-400 mt-2 text-lg">{member.role}</p>
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Footer Note */}
+      <div className="mt-12 sm:mt-16 text-center text-gray-400 text-sm">
+        <p>Building the future of education at IIIT Allahabad</p>
       </div>
     </div>
   );
