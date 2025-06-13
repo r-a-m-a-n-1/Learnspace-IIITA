@@ -1156,7 +1156,7 @@ export default function MainAdminHomePage() {
       // (lectureType is not persisted in your backend, so skip it here)
 
       const xhr = new XMLHttpRequest();
-     xhr.open("POST", `${API}/api/upload`, true);
+     xhr.open("POST", `${API}/upload`, true);
 
       xhr.upload.onloadstart = () => {
         setUploading(true);
