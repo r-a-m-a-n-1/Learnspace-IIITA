@@ -67,6 +67,34 @@ const PPL = () => {
     "MV0mKgT7PuY",
     "TLmcTXtOBKA",
     "p6ETLr_J4_0",
+    "4vv3EOjtpHo",
+    "XXSn_9E-DBE",
+    "VpW0W5m6Cuw",
+    "N7vNXAzkYBE",
+    "-v1K9AnkAeM",
+    "s8c6k0ITjS8",
+    "KEekWwAUVWo",
+    "6Wr4gc1KWTM",
+    "gpyXzMwu6tM",
+    "9yBfZtN6gW8",
+    "4ejJ4WDS8Pk",
+    "z-9rhL5T2Xc",
+    "s3nV3mJMNWA",
+    "_EakgGNPE3o",
+    "yuR7KsfA55A",
+    "bkAi-x2kZhY",
+    "U2RTuOKcyUU",
+    "xl7NzdcgqXo",
+    "JJugu8qq_CM",
+    "DjaCFBEtVlg",
+    "WKQRmVrQLyM",
+    "syGMNm25mfY",
+    "cmc_UffqssI",
+    "vRT1WqPpKHY",
+    "PK2jQesRzgY",
+    "7QI0jZlQBn0",
+    "Eymm8FSSBWc",
+    "6k78c8EctXI",
 
   ];
 
@@ -128,6 +156,34 @@ const PPL = () => {
     "Machine Independent Code Optimization | Compiler Design",
     "Liveness Analysis in Compiler Design | Code optimization | Dataflow analysis",
     "Liveness Analysis Solved examples | Dataflow analysis | Compiler Design",
+    "1-Installing PROLOG on WINDOWS and LINUX",
+    "2-Why to use Logic Programming [PROLOG]",
+    "3-PROLOG (Brief History)",
+    "4-Facts || No vs False [PROLOG]",
+    "5-First Prolog Code",
+    "6-Variables in PROLOG",
+    "7-Conjunctions(AND , OR) [PROLOG]",
+    "8-Facts in PROLOG",
+    "9-Example CODE in PROLOG Facts",
+    "Characters, Constants and Variables (PROLOG)",
+    "Anonymous Variable [PROLOG] (Theory & CODE)",
+    "Structure in Prolog",
+    "Operator Precedence and Associativity in PROLOG",
+    "Equality and Unification in PROLOG (with Examples)",
+    "Arithmetic and Relational Operators in Prolog",
+    "List in PROLOG (Explained with CODE)",
+    "Find if given element is present in list using prolog",
+    "Find number of elements in a list in prolog (with CODE)",
+    "Find sum of elements of a list in prolog",
+    "Recursive search in PROLOG",
+    "check if a list is sorted using prolog",
+    "Append and Concatenate in prolog",
+    "Infinite Loop in PROLOG",
+    "Accumulators in PROLOG",
+    "Backtracking in PROLOG (with CODE)",
+    "CUT in PROLOG | Control Backtracking",
+    "CUT and Fail in PROLOG",
+    "Introduction to Scheme Programming",
 
   ];
 
@@ -195,7 +251,9 @@ const PPL = () => {
           </div>
           <nav className="space-y-4">
             {[
-              ["All Videos", "All Videos", 0, 56]
+              ["All Videos", "All Videos", 0, 56],
+              ["Prolog", "Prolog", 56, 83],
+              ["Scheme", "Scheme", 83, 85]
 
             ].map(([key, label]) => (
               <button
@@ -227,9 +285,13 @@ const PPL = () => {
         </div>
 
         {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 56)}
+        {selectedSection === null && renderSection("Prolog", "Prolog ", 56, 83)}
+        {selectedSection === null && renderSection("Scheme", "Scheme ", 83, 85)}
 
 
         {selectedSection === "All Videos" && renderSection("All Videos", "All Videos ", 0, 56)}
+        {selectedSection === "Prolog" && renderSection("Prolog", "Prolog ", 56, 83)}
+        {selectedSection === "Scheme" && renderSection("Scheme", "Scheme ", 83, 85)}
 
       </main>
 

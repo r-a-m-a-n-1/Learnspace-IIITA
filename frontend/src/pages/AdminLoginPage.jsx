@@ -163,7 +163,7 @@ const AdminLoginPage = () => {
                   onClick={() => navigate('/create-admin')}
                   className="text-green-400 hover:underline"
                 >
-                  Create a new Admin
+                 Create an account as admin
                 </button>
               </div>
             </form>
