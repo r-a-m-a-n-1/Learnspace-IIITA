@@ -1158,7 +1158,7 @@ export default function MainAdminHomePage() {
     formData.append("year", year);
     formData.append("paperType", paperType);
 
-    const response = await api.post("/upload", formData, {
+    const response = await api.post("api/upload", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

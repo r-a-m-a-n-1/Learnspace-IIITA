@@ -1492,7 +1492,7 @@ const transporter = nodemailer.createTransport({
 
 // Utility functions
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
-const sanitizeKey = str => str.replace(/[.#$[\]/]/g, ',');
+const sanitizeKey = (str) => str.replace(/[.#$[\]/]/g, '_');
 
 // Initialize main admin
 async function initMainAdmin() {
