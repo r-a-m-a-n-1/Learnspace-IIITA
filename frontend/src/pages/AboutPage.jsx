@@ -930,6 +930,8 @@ import { motion } from 'framer-motion';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaCopyright, FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 
+const API = import.meta.env.VITE_API_URL
+
 const AboutPage = () => {
   const navigate = useNavigate();
   const [adminCount, setAdminCount] = useState(0);
