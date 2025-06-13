@@ -1857,7 +1857,18 @@ The Admin Team
 
 
 // 📤 Upload API: POST /api/upload
-app.post('/api/upload', upload.single('file'), async (req, res) => {
+
+
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+};
+
+
+app.post('/api/upload',
+  cors(corsOptions),
+  upload.single('file'),
+  async (req, res) => {
   const { title, semester, branch, subject, year, paperType } = req.body;
   const file = req.file;
 
