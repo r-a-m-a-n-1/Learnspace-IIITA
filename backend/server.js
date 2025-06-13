@@ -1434,19 +1434,23 @@ const { OAuth2Client } = require('google-auth-library');
 const { v4: uuidv4 }  = require('uuid');
 const db         = require('./firebase-init');
 const multer     = require('multer');
-const cloudinary= require('cloudinary').v2;
+const cloudinary = require('cloudinary').v2;
 const { Readable } = require('stream');
 const fs      = require('fs');
 const os      = require('os');
 const path    = require('path');
 
+// Initialize Express app first
+const app = express();
+
+// Cloudinary config
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key:    process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-
+// CORS configuration
 const corsOptions = {
   origin: process.env.FRONTEND_URL,
   credentials: true,
@@ -1454,23 +1458,27 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization']
 };
 
+// Apply middleware in correct order
 app.use(cors(corsOptions));
 app.options('*', cors(corsOptions));
-// 📁 Multer setup to handle multipart form-data
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
+
+// Additional headers
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
+  next();
+});
+
+// Multer setup
 const storage = multer.memoryStorage();
 const upload = multer({ 
   storage,
   limits: { fileSize: 100 * 1024 * 1024 } // 100MB limit
 });
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-const app = express();
-app.use(cors({ origin: process.env.FRONTEND_URL, credentials: true }));
-app.use(express.json());
-
-const sanitizeKey = str => str.replace(/[.#$\[\]/]/g, ',');
-
+// Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
@@ -1482,9 +1490,11 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-
+// Utility functions
 const generateOTP = () => Math.floor(100000 + Math.random() * 900000).toString();
-// Also update the initMainAdmin function to initialize the contributor count
+const sanitizeKey = str => str.replace(/[.#$\[\]/]/g, ',');
+
+// Initialize main admin
 async function initMainAdmin() {
   const snap = await db
     .ref('admins')
@@ -1510,27 +1520,20 @@ async function initMainAdmin() {
   }
 }
 
-app.use((req, res, next) => {
-  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
-  res.setHeader("Cross-Origin-Embedder-Policy", "require-corp");
-  next();
-});
-
+// Routes
 app.get("/", (req, res) => {
   res.send("Backend is working!");
 });
 
-
 // Get contributor count
-// Modify your contributors endpoint
 app.get('/api/admins/contributors', async (req, res) => {
   try {
     const snap = await db.ref('contributors').once('value');
-    const count = snap.val()?.count || 0; // Proper null check
+    const count = snap.val()?.count || 0;
     res.json({ count });
   } catch (err) {
     console.error('Failed to fetch contributors:', err);
-    res.status(500).json({ count: 0 }); // Always return consistent format
+    res.status(500).json({ count: 0 });
   }
 });
 
@@ -1591,7 +1594,6 @@ app.post('/api/verify-otp', async (req, res) => {
   const [[, adminRecord]] = Object.entries(admins);
   const isMain = !!adminRecord.isMain;
 
-  // ✅ Choose name based on admin type
   const name = isMain ? process.env.MAIN_ADMIN_NAME : adminRecord.name;
 
   const token = jwt.sign(
@@ -1603,10 +1605,7 @@ app.post('/api/verify-otp', async (req, res) => {
   res.json({ token, isMain, name });
 });
 
-
-// ——————————————————————————
 // 2) REQUEST new admin → approval token
-// ——————————————————————————
 app.post('/api/request-admin', async (req, res) => {
   const { name, email, password } = req.body;
   const key = sanitizeKey(email);
@@ -1659,9 +1658,7 @@ app.post('/api/request-admin', async (req, res) => {
   }
 });
 
-// ——————————————————————————
 // 3) APPROVE via link (UPDATED VERSION)
-// ——————————————————————————
 app.get('/api/approve-admin', async (req, res) => {
   const { token } = req.query;
   if (!token) return res.status(400).send('Missing token');
@@ -1692,7 +1689,7 @@ app.get('/api/approve-admin', async (req, res) => {
     const contributorsRef = db.ref('contributors');
     await contributorsRef.transaction((currentData) => {
       if (currentData === null) {
-        return { count: 1 }; // Initialize if doesn't exist
+        return { count: 1 };
       }
       currentData.count = (currentData.count || 0) + 1;
       return currentData;
@@ -1717,9 +1714,6 @@ app.get('/api/approve-admin', async (req, res) => {
     res.status(500).send('Server error during approval');
   }
 });
-
-
-
 
 // 5) FORGOT PASSWORD: send reset OTP
 app.post('/api/reset-password', async (req, res) => {
@@ -1786,7 +1780,6 @@ app.post('/api/google-login', async (req, res) => {
     const [[, adminRecord]] = Object.entries(snap.val());
     const isMain = !!adminRecord.isMain;
 
-    // ✅ Name based on role: main admin uses env name
     const name = isMain ? process.env.MAIN_ADMIN_NAME : adminRecord.name;
 
     const jwtToken = jwt.sign(
@@ -1801,7 +1794,6 @@ app.post('/api/google-login', async (req, res) => {
   }
 });
 
-
 // Get all admins
 app.get('/api/admin/all', async (req, res) => {
   try {
@@ -1809,7 +1801,7 @@ app.get('/api/admin/all', async (req, res) => {
     const admins = snap.val() || {};
 
     const adminList = Object.values(admins)
-      .filter(admin => !admin.isMain) // <-- Exclude main admin
+      .filter(admin => !admin.isMain)
       .map(({ name, email, isMain }) => ({
         name,
         email,
@@ -1822,7 +1814,6 @@ app.get('/api/admin/all', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
-
 
 // Delete admin by email (with thank you email)
 app.delete('/api/admin/delete/:email', async (req, res) => {
@@ -1869,12 +1860,7 @@ The Admin Team
   }
 });
 
-
-
-// 📤 Upload API: POST /api/upload
-
-
-
+// Upload API
 app.post('/api/upload', 
   cors(corsOptions),
   upload.single('file'),
@@ -1956,6 +1942,7 @@ app.post('/api/upload',
   }
 );
 
+// Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, async () => {
   try {
