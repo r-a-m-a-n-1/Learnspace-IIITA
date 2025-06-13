@@ -215,37 +215,36 @@ import { motion } from 'framer-motion';
 import { AiFillHeart } from 'react-icons/ai';
 import { FaCopyright, FaInstagram, FaWhatsapp, FaFacebook } from 'react-icons/fa';
 
-const API = import.meta.env.VITE_API_URL
+const API = import.meta.env.VITE_API_URL;
 
 const AboutPage = () => {
   const navigate = useNavigate();
   const [adminCount, setAdminCount] = useState(0);
 
-   useEffect(() => {
+  useEffect(() => {
     fetch(`${API}/admins/contributors`, {
       credentials: 'include'
     })
       .then(res => {
-        if (!res.ok) throw new Error(res.statusText)
-        return res.json()
+        if (!res.ok) throw new Error(res.statusText);
+        return res.json();
       })
       .then(data => setAdminCount(data.count))
       .catch(err => {
-        console.error('Failed to fetch contributor count:', err)
-        setAdminCount(1) // fallback
-      })
-  }, [])
-
+        console.error('Failed to fetch contributor count:', err);
+        setAdminCount(1); // fallback
+      });
+  }, []);
 
   return (
-    <div className="min-h-screen flex flex-col justify-between bg-black">
+    <div className="min-h-screen flex flex-col justify-between bg-black pt-16"> {/* Added pt-16 */}
       {/* Main content - fully responsive */}
       <div className="flex-grow flex items-center justify-center p-4">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-5xl bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-xl shadow-xl overflow-hidden"
+          className="w-full max-w-5xl bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-xl shadow-xl overflow-hidden mt-4" {/* Added mt-4 */}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
             {/* Left Column - Text Content */}
@@ -254,7 +253,7 @@ const AboutPage = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text px-4 sm:px-0"  // Added px-4 for mobile padding
+                className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text pt-4 lg:pt-0" {/* Added pt-4 */}
               >
                 About LearnSpace-IIITA
               </motion.h1>
