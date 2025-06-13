@@ -2438,6 +2438,7 @@
 //   );
 // }
 
+
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
@@ -2672,12 +2673,16 @@ export default function MainAdminHomePage() {
               )}
             </button>
             {showAdmins && (
-              <div className="absolute right-0 mt-2 w-64 max-h-60 bg-gray-800 rounded-md shadow-lg overflow-y-auto z-20 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-700">
+              <div 
+                className="absolute right-0 mt-2 w-64 max-h-60 bg-gray-800 rounded-md shadow-lg overflow-y-auto z-20 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-700"
+                onMouseDown={e => e.stopPropagation()}
+              >
                 {error && <div className="px-3 py-2 text-red-400">{error}</div>}
                 {admins.map((a) => (
                   <div
                     key={a.email}
                     className="flex justify-between items-center px-3 py-2 hover:bg-gray-700 transition"
+                    onMouseDown={e => e.stopPropagation()}
                   >
                     <span className="text-sm">
                       {a.name} ({a.email})
@@ -2754,13 +2759,14 @@ export default function MainAdminHomePage() {
                 {showAdmins && (
                   <div 
                     className="mt-2 w-full max-h-52 bg-gray-700 rounded-md shadow-lg overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"
-                    onClick={(e) => e.stopPropagation()}
+                    onMouseDown={e => e.stopPropagation()}
                   >
                     {error && <div className="px-3 py-2 text-red-400 text-sm">{error}</div>}
                     {admins.map((a) => (
                       <div
                         key={a.email}
                         className="flex justify-between items-center px-3 py-2 hover:bg-gray-600"
+                        onMouseDown={e => e.stopPropagation()}
                       >
                         <div className="text-xs">
                           <div className="font-medium">{a.name}</div>
