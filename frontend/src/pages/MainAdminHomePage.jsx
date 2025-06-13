@@ -556,128 +556,128 @@
 //       onSubmit={handleSubmit}
 //       className="bg-gray-800 p-8 rounded-xl w-full max-w-2xl shadow-lg text-white space-y-6"
 //     >
-//       <h2 className="text-2xl font-bold text-center text-blue-400">
-//         Upload Study Material / Paper
-//       </h2>
-//       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//         <select
-//           name="sem"
-//           value={data.sem}
-//           onChange={handleChange}
-//           className="p-2 rounded bg-gray-700"
-//         >
-//           {semesters.map((s) => (
-//             <option key={s.name}>{s.name}</option>
-//           ))}
-//         </select>
+      // <h2 className="text-2xl font-bold text-center text-blue-400">
+      //   Upload Study Material / Paper
+      // </h2>
+      // <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      //   <select
+      //     name="sem"
+      //     value={data.sem}
+      //     onChange={handleChange}
+      //     className="p-2 rounded bg-gray-700"
+      //   >
+      //     {semesters.map((s) => (
+      //       <option key={s.name}>{s.name}</option>
+      //     ))}
+      //   </select>
 
-//         {showBranch && (
-//           <select
-//             name="branch"
-//             value={data.branch}
-//             onChange={handleChange}
-//             className="p-2 rounded bg-gray-700"
-//           >
-//             <option value="">Select Branch</option>
-//             {branches.map((b) => (
-//               <option key={b}>{b}</option>
-//             ))}
-//           </select>
-//         )}
+      //   {showBranch && (
+      //     <select
+      //       name="branch"
+      //       value={data.branch}
+      //       onChange={handleChange}
+      //       className="p-2 rounded bg-gray-700"
+      //     >
+      //       <option value="">Select Branch</option>
+      //       {branches.map((b) => (
+      //         <option key={b}>{b}</option>
+      //       ))}
+      //     </select>
+      //   )}
 
-//         <select
-//           name="materialType"
-//           value={data.materialType}
-//           onChange={handleChange}
-//           className="p-2 rounded bg-gray-700"
-//         >
-//           <option>Previous Year Paper</option>
-//           <option>Lecture Notes and Assignment</option>
-//         </select>
+      //   <select
+      //     name="materialType"
+      //     value={data.materialType}
+      //     onChange={handleChange}
+      //     className="p-2 rounded bg-gray-700"
+      //   >
+      //     <option>Previous Year Paper</option>
+      //     <option>Lecture Notes and Assignment</option>
+      //   </select>
 
-//         <input
-//           type="text"
-//           name="year"
-//           placeholder="Year (e.g., 2023)"
-//           value={data.year}
-//           onChange={handleChange}
-//           className="p-2 rounded bg-gray-700"
-//         />
+      //   <input
+      //     type="text"
+      //     name="year"
+      //     placeholder="Year (e.g., 2023)"
+      //     value={data.year}
+      //     onChange={handleChange}
+      //     className="p-2 rounded bg-gray-700"
+      //   />
 
-//         <select
-//           name="subject"
-//           value={data.subject}
-//           onChange={handleChange}
-//           className="p-2 rounded bg-gray-700"
-//         >
-//           <option value="">Select Subject</option>
-//           {subjects.map((subj) => (
-//             <option key={subj}>{subj}</option>
-//           ))}
-//         </select>
+      //   <select
+      //     name="subject"
+      //     value={data.subject}
+      //     onChange={handleChange}
+      //     className="p-2 rounded bg-gray-700"
+      //   >
+      //     <option value="">Select Subject</option>
+      //     {subjects.map((subj) => (
+      //       <option key={subj}>{subj}</option>
+      //     ))}
+      //   </select>
 
-//         {/* Only show this dropdown if “Previous Year Paper” is selected */}
-//         {isPreviousYear && (
-//           <select
-//             name="paperType"
-//             value={data.paperType}
-//             onChange={handleChange}
-//             className="p-2 rounded bg-gray-700"
-//           >
-//             <option>Mid Sem</option>
-//             <option>End Sem</option>
-//             <option>Quiz</option>
-//           </select>
-//         )}
+      //   {/* Only show this dropdown if “Previous Year Paper” is selected */}
+      //   {isPreviousYear && (
+      //     <select
+      //       name="paperType"
+      //       value={data.paperType}
+      //       onChange={handleChange}
+      //       className="p-2 rounded bg-gray-700"
+      //     >
+      //       <option>Mid Sem</option>
+      //       <option>End Sem</option>
+      //       <option>Quiz</option>
+      //     </select>
+      //   )}
 
-//         {/* ===== NEW: Lecture Type dropdown if “Lecture Notes and Assignment” ===== */}
-//         {isLectureNotes && (
-//           <div className="col-span-full flex flex-col gap-2">
-//             <select
-//               name="lectureType"
-//               value={data.lectureType}
-//               onChange={handleChange}
-//               className="p-2 rounded bg-gray-700"
-//             >
-//               <option value="">Select Lecture Type</option>
-//               <option>Assignment</option>
-//               <option>Tutorial Sheet</option>
-//               <option>Lecture Notes</option>
-//               <option>PPT</option>
-//               <option>Handwritten Notes</option>
-//               <option>Other</option>
-//             </select>
+      //   {/* ===== NEW: Lecture Type dropdown if “Lecture Notes and Assignment” ===== */}
+      //   {isLectureNotes && (
+      //     <div className="col-span-full flex flex-col gap-2">
+      //       <select
+      //         name="lectureType"
+      //         value={data.lectureType}
+      //         onChange={handleChange}
+      //         className="p-2 rounded bg-gray-700"
+      //       >
+      //         <option value="">Select Lecture Type</option>
+      //         <option>Assignment</option>
+      //         <option>Tutorial Sheet</option>
+      //         <option>Lecture Notes</option>
+      //         <option>PPT</option>
+      //         <option>Handwritten Notes</option>
+      //         <option>Other</option>
+      //       </select>
 
-//             {data.lectureType === "Other" && (
-//               <input
-//                 type="text"
-//                 name="customType"
-//                 placeholder="Please specify (e.g., 'Lab Manual')"
-//                 value={data.customType}
-//                 onChange={handleChange}
-//                 className="p-2 rounded bg-gray-700"
-//               />
-//             )}
-//           </div>
-//         )}
-//         {/* ===== END of Lecture Type section ===== */}
+      //       {data.lectureType === "Other" && (
+      //         <input
+      //           type="text"
+      //           name="customType"
+      //           placeholder="Please specify (e.g., 'Lab Manual')"
+      //           value={data.customType}
+      //           onChange={handleChange}
+      //           className="p-2 rounded bg-gray-700"
+      //         />
+      //       )}
+      //     </div>
+      //   )}
+      //   {/* ===== END of Lecture Type section ===== */}
 
-//         <input
-//           type="text"
-//           name="title"
-//           placeholder="Title"
-//           value={data.title}
-//           onChange={handleChange}
-//           className="p-2 rounded bg-gray-700"
-//         />
+      //   <input
+      //     type="text"
+      //     name="title"
+      //     placeholder="Title"
+      //     value={data.title}
+      //     onChange={handleChange}
+      //     className="p-2 rounded bg-gray-700"
+      //   />
 
-//         <input
-//           type="file"
-//           name="file"
-//           onChange={handleChange}
-//           className="p-2 rounded bg-gray-700 text-white"
-//         />
-//       </div>
+      //   <input
+      //     type="file"
+      //     name="file"
+      //     onChange={handleChange}
+      //     className="p-2 rounded bg-gray-700 text-white"
+      //   />
+      // </div>
 
 //       {uploading && (
 //         <div className="flex items-center gap-2">
@@ -1083,7 +1083,7 @@ export default function MainAdminHomePage() {
 }
 
 
-export default function UploadMaterialForm() {
+ function UploadMaterialForm() {
   const [data, setData] = useState({
     sem: "Semester 1",
     branch: "",
@@ -1230,7 +1230,128 @@ export default function UploadMaterialForm() {
       onSubmit={handleSubmit}
       className="bg-gray-800 p-8 rounded-xl w-full max-w-2xl shadow-lg text-white space-y-6"
     >
-      {/* ... your existing JSX fields ... */}
+      <h2 className="text-2xl font-bold text-center text-blue-400">
+        Upload Study Material / Paper
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <select
+          name="sem"
+          value={data.sem}
+          onChange={handleChange}
+          className="p-2 rounded bg-gray-700"
+        >
+          {semesters.map((s) => (
+            <option key={s.name}>{s.name}</option>
+          ))}
+        </select>
+
+        {showBranch && (
+          <select
+            name="branch"
+            value={data.branch}
+            onChange={handleChange}
+            className="p-2 rounded bg-gray-700"
+          >
+            <option value="">Select Branch</option>
+            {branches.map((b) => (
+              <option key={b}>{b}</option>
+            ))}
+          </select>
+        )}
+
+        <select
+          name="materialType"
+          value={data.materialType}
+          onChange={handleChange}
+          className="p-2 rounded bg-gray-700"
+        >
+          <option>Previous Year Paper</option>
+          <option>Lecture Notes and Assignment</option>
+        </select>
+
+        <input
+          type="text"
+          name="year"
+          placeholder="Year (e.g., 2023)"
+          value={data.year}
+          onChange={handleChange}
+          className="p-2 rounded bg-gray-700"
+        />
+
+        <select
+          name="subject"
+          value={data.subject}
+          onChange={handleChange}
+          className="p-2 rounded bg-gray-700"
+        >
+          <option value="">Select Subject</option>
+          {subjects.map((subj) => (
+            <option key={subj}>{subj}</option>
+          ))}
+        </select>
+
+        {/* Only show this dropdown if “Previous Year Paper” is selected */}
+        {isPreviousYear && (
+          <select
+            name="paperType"
+            value={data.paperType}
+            onChange={handleChange}
+            className="p-2 rounded bg-gray-700"
+          >
+            <option>Mid Sem</option>
+            <option>End Sem</option>
+            <option>Quiz</option>
+          </select>
+        )}
+
+        {/* ===== NEW: Lecture Type dropdown if “Lecture Notes and Assignment” ===== */}
+        {isLectureNotes && (
+          <div className="col-span-full flex flex-col gap-2">
+            <select
+              name="lectureType"
+              value={data.lectureType}
+              onChange={handleChange}
+              className="p-2 rounded bg-gray-700"
+            >
+              <option value="">Select Lecture Type</option>
+              <option>Assignment</option>
+              <option>Tutorial Sheet</option>
+              <option>Lecture Notes</option>
+              <option>PPT</option>
+              <option>Handwritten Notes</option>
+              <option>Other</option>
+            </select>
+
+            {data.lectureType === "Other" && (
+              <input
+                type="text"
+                name="customType"
+                placeholder="Please specify (e.g., 'Lab Manual')"
+                value={data.customType}
+                onChange={handleChange}
+                className="p-2 rounded bg-gray-700"
+              />
+            )}
+          </div>
+        )}
+        {/* ===== END of Lecture Type section ===== */}
+
+        <input
+          type="text"
+          name="title"
+          placeholder="Title"
+          value={data.title}
+          onChange={handleChange}
+          className="p-2 rounded bg-gray-700"
+        />
+
+        <input
+          type="file"
+          name="file"
+          onChange={handleChange}
+          className="p-2 rounded bg-gray-700 text-white"
+        />
+      </div>
       {uploading && (
         <div className="flex items-center gap-2">
           <div className="w-full bg-gray-700 rounded-full overflow-hidden h-4">
