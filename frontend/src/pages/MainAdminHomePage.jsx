@@ -719,6 +719,8 @@ import { useAuth } from "../context/AuthContext";
 import api from "../api/api";
 import { Trash2, ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 import { db } from "../firebase";
+const API = import.meta.env.VITE_API_URL;
+
 import {
   collection,
   doc,
@@ -1154,7 +1156,7 @@ export default function MainAdminHomePage() {
       // (lectureType is not persisted in your backend, so skip it here)
 
       const xhr = new XMLHttpRequest();
-      xhr.open("POST", "/api/upload", true);
+     xhr.open("POST", `${API}/api/upload`, true);
 
       xhr.upload.onloadstart = () => {
         setUploading(true);
