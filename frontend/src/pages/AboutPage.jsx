@@ -934,41 +934,21 @@ const AboutPage = () => {
   const navigate = useNavigate();
   const [adminCount, setAdminCount] = useState(0);
 
-  useEffect(() => {
-    const fetchCount = async () => {
-      try {
-        const response = await fetch('/api/admins/contributors');
-        
-        // First check if the response is OK (status 200-299)
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        // Check if the content-type is JSON
-        const contentType = response.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-          const textData = await response.text();
-          throw new Error(`Expected JSON but got: ${contentType}`);
-        }
-        
-        const data = await response.json();
-        
-        // Ensure we're getting the count properly
-        if (typeof data?.count !== 'number') {
-          console.error('Unexpected response format:', data);
-          setAdminCount(1); // Fallback
-          return;
-        }
-        
-        setAdminCount(data.count);
-      } catch (err) {
-        console.error('Fetch failed, using fallback:', err);
-        setAdminCount(1); // Guaranteed minimum
-      }
-    };
-    
-    fetchCount();
-  }, []);
+   useEffect(() => {
+    fetch(`${API}/api/admins/contributors`, {
+      credentials: 'include'
+    })
+      .then(res => {
+        if (!res.ok) throw new Error(res.statusText)
+        return res.json()
+      })
+      .then(data => setAdminCount(data.count))
+      .catch(err => {
+        console.error('Failed to fetch contributor count:', err)
+        setAdminCount(1) // fallback
+      })
+  }, [])
+
 
   // ... rest of your component code remains exactly the same ...
   return (
