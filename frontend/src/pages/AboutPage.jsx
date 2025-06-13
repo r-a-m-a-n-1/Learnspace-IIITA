@@ -253,7 +253,7 @@ const AboutPage = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text pt-4 lg:pt-0" {/* Added pt-4 */}
+                className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text pt-4 lg:pt-0" 
               >
                 About LearnSpace-IIITA
               </motion.h1>
