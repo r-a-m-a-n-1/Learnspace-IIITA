@@ -719,7 +719,7 @@ import { useAuth } from "../context/AuthContext";
 import api from "../api/api";
 import { Trash2, ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 import { db } from "../firebase";
-const API = import.meta.env.VITE_API_URL;
+ const API = import.meta.env.VITE_API_URL || window.location.origin;
 
 import {
   collection,
