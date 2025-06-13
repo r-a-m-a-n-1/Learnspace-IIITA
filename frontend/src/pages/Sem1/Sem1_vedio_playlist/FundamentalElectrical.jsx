@@ -211,7 +211,33 @@ const FEE = () => {
 "Y8pHOHG-a20",
 "SujBaYvHTI4",
 "muJBwSF4KSc",
-"UBl-aLJrOAQ"
+"UBl-aLJrOAQ",
+"fdqnYttEzPU",
+"CK832FtX220",
+"uwGAE4xohiU",
+"YAlnEchWRQg",
+"krOWJTzjEtk",
+"e7UtJDdgCwU",
+"ugO1G7_1a-o",
+"I3bPD_VArCs",
+"jym3HnLEN1U",
+"dSJLg83I2-I",
+"g1__Rga0-3s",
+"fJQMpSeOX6M",
+"mWqsJrLh4ik",
+"9nurOiUs17Y",
+"M51TPW_SsMU",
+"7LJ2GSVIhzU",
+"6NSwz5_FNaE",
+"RCMmF0qQFUE",
+"NCAA5kUehCE",
+"ITcxMq21QJs",
+"1NAVBN5VnRo",
+"AHzkPJHqscE",
+"nl1G2lfsq1Y",
+"GE2r_BxYueQ",
+"od-kTHNpPuU",
+
   ];
 
   // Provide a description for each video.
@@ -227,8 +253,8 @@ const FEE = () => {
 "Electric Power (Solved Problem)",
 "Circuit Elements (Resistor)",
 "Ohm's Law",
-"The ConcFEEt of Short Circuit",
-"The ConcFEEt of Open Circuit",
+"The Concept of Short Circuit",
+"The Concept of Open Circuit",
 "Circuit Elements (Inductor)",
 "Linear and Non-Linear Inductors",
 "Energy Stored in an Inductor",
@@ -236,7 +262,7 @@ const FEE = () => {
 "Circuit Elements (Capacitor)",
 "Energy Stored in a Capacitor",
 "Capacitor (Important Points)",
-"DFEEendent and IndFEEendent Sources",
+"Dependent and Independent Sources",
 "Ideal and Practical Voltage Sources",
 "Ideal and Practical Current Sources",
 "Voltage Source (Tips & Tricks)",
@@ -325,7 +351,7 @@ const FEE = () => {
 "ABCD−Parameters (or) Transmission Parameters",
 "ABCD−Parameters to Z−Parameters Conversion (and vice versa)",
 "ABCD−Parameters (Solved Problem)",
-"ConcFEEt of Symmetry in Two−Port Networks",
+"Concept of Symmetry in Two−Port Networks",
 "Condition for Symmetry in Two−Port Networks",
 "Condition for Reciprocity in Two−Port Networks (Part 1)",
 "Condition for Reciprocity in Two−Port Networks (Part 2)",
@@ -385,13 +411,13 @@ const FEE = () => {
 "Sinusoidal Steady-State (Solved Question 6)",
 "Introduction to Network Theorems",
 "Superposition Theorem",
-"Superposition Theorem with DFEEendent Sources",
+"Superposition Theorem with Dependent Sources",
 "Superposition Theorem (Problem 2)",
 "Superposition Theorem (Problem 3)",
 "Superposition Theorem (Problem 4)",
 "Thevenin's Theorem",
 "Thevenin's Theorem (Problem 1)",
-"Thevenin's Theorem with DFEEendent Sources",
+"Thevenin's Theorem with Dependent Sources",
 "Thevenin's Theorem (Problem 3)",
 "Thevenin's Theorem (Problem 4)",
 "Thevenin's Theorem (Problem 5)",
@@ -424,7 +450,32 @@ const FEE = () => {
 "Maximum Power Transfer Theorem (Solved Problem 7)",
 "Maximum Power Transfer Theorem (Solved Problem 8)",
 "Maximum Power Transfer Theorem (Solved Problem 9)",
-""
+"4.Kirchhoff's Voltage Law Lab Experiment | KVL | Basic Electrical and Electronics Engineering Lab",
+"11.Thevenin's Theorem Lab Experiment | Basic Electrical and electronics Engineering Lab | BEEE Lab",
+"17. PN junction Diode Characteristics | Lab Experiment | BEEE Lab | JNTU | Autonomous",
+"9.Superposition Theorem Lab Experiment | Basic Electrical and Electronics Engineering Lab | BEEE Lab",
+"5. Kirchhoff's Current Law Lab Experiment | Basic Electrical & electronics Engineering Lab | KCL",
+"20.Half Wave Rectifier | Lab Experiment | BEEE Lab | JNTU | Autonomous",
+"18. Zener diode FB & RB Characteristics | Lab Experiment | BEEE Lab | Part-1 | JNTU | Autonomous",
+"22. Common Emitter Configuration Lab Experiment | BEEE Lab | Input and Output Characteristics |",
+"13.Norton's Theorem Lab Experiment | Basic Electrical & Electronics Engineering Lab | BEEE Lab",
+"19. Zener diode Characteristics | Lab Experiment | Line and Load Regulations | BEEE Lab | Part-2",
+"15.Maximum Power Transfer Theorem Lab Experiment | Basic Electrical and Electronics Engineering Lab",
+"16.BEEE Lab viva questions with answers | Part-A | Basic Electrical & Electronics Engineering Lab",
+"23. Common Base configuration lab experiment | BEEE lab | input and output characteristics",
+"21. Full Wave Rectifier Lab Experiment | BEEE Lab | JNTU | Autonomous",
+"3. KVL,KCL Lab Experiment Theoretical Calculations | BEE | BEEE Lab | JNTU | Autonomous",
+"1. Resistor Color Coding | Circuits Lab | BEE | BEEE Lab | JNTU | Autonomous",
+"10.Thevenin's Theorem Experiment Theoretical Calculations | BEE | BEEE Lab | JNTU | Autonomous",
+"25. BEEE lab viva Questions with Answers | Part-B | basic electrical and electronics engineering lab",
+"8.Superposition Theorem Experiment | Theoretical Calculations | BEE | BEEE Lab | JNTU | Autonomous",
+"2. Bread Board connection | circuits lab connections | BEE Lab | BEEE Lab | JNTU | Autonomous",
+"7. Reciprocity Theorem Lab Experiment | Basic Electrical and Electronics Engineering Lab | BEEE Lab",
+"12.Norton's Theorem Experiment Theoretical Calculations | BEE | BEEE Lab | JNTU | Autonomous",
+"14.Maximum power Transfer theorem Theoretical Calculations | BEE | BEEE Lab | JNTU | Autonomous",
+"24. Basic Electrical & Electronics Engineering Lab | Part -B | All Lab Experiments| BEEE Lab",
+"6. Reciprocity Theorem Lab Experiment | Theoretical calculations | BEE| BEEE Lab | JNTU | Autonomous",
+
 
 
   ];
@@ -493,8 +544,8 @@ const FEE = () => {
           </div>
           <nav className="space-y-4">
             {[
-              ["All Videos", "All Videos", 0, 212]
-              
+              ["All Videos", "All Videos", 0, 208],
+              ["LAB EXP", "LAB EXP", 208, 250]
             ].map(([key, label]) => (
               <button
                 key={key}
@@ -525,10 +576,11 @@ const FEE = () => {
           </button>
         </div>
 
-        {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 212)}
-        
+        {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 208)}
+        {selectedSection === null && renderSection("LAB EXP", "LAB EXP ", 208, 250)}
 
-        {selectedSection === "All Videos" && renderSection("All Videos", "All Videos ", 0, 212)}
+        {selectedSection === "All Videos" && renderSection("All Videos", "All Videos ", 0, 208)}
+        {selectedSection === "LAB EXP" && renderSection("LAB EXP", "LAB EXP ", 208, 250)}
         
       </main>
 
