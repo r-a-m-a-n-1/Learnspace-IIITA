@@ -937,7 +937,7 @@ const AboutPage = () => {
   const [adminCount, setAdminCount] = useState(0);
 
    useEffect(() => {
-    fetch(`${API}/api/admins/contributors`, {
+    fetch(`${API}/admins/contributors`, {
       credentials: 'include'
     })
       .then(res => {
