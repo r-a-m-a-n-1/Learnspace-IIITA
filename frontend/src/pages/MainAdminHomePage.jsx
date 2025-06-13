@@ -2438,7 +2438,6 @@
 //   );
 // }
 
-
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Typewriter } from "react-simple-typewriter";
@@ -2638,7 +2637,6 @@ export default function MainAdminHomePage() {
   };
 
   const handleAdminsClick = (e) => {
-    // Stop propagation to prevent the click from reaching the mobile menu
     e.stopPropagation();
     setShowAdmins((s) => !s);
   };
@@ -2723,6 +2721,7 @@ export default function MainAdminHomePage() {
           <div
             ref={mobileMenuRef}
             className="fixed inset-y-0 right-0 w-64 bg-gray-800 shadow-xl z-50 flex flex-col"
+            onClick={(e) => e.stopPropagation()}
           >
             <div className="p-4 border-b border-gray-700 flex justify-between items-center">
               <div className="flex items-center gap-3">
@@ -2755,7 +2754,7 @@ export default function MainAdminHomePage() {
                 {showAdmins && (
                   <div 
                     className="mt-2 w-full max-h-52 bg-gray-700 rounded-md shadow-lg overflow-y-auto scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-gray-800"
-                    onClick={(e) => e.stopPropagation()} // Prevent clicks inside from bubbling
+                    onClick={(e) => e.stopPropagation()}
                   >
                     {error && <div className="px-3 py-2 text-red-400 text-sm">{error}</div>}
                     {admins.map((a) => (
