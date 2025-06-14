@@ -164,6 +164,31 @@ const COA = () => {
 "qhbgkyi_fbw",
 "ZW1gb3h-f9k",
 "gkgqVEPi3Fk",
+"YRASD0-uf_M",
+"b6EmT6g_crI",
+"FfvcHq8qJWE",
+"KSu0QOk2zfM",
+"izq9UbqoPnU",
+"7n5eyXahEcM",
+"5YUnWdkAmoo",
+"4wKdjlgRGJY",
+"lZjBl5GEQBo",
+"Wawl993d-lw",
+"bdPyTstCKow",
+"0iA6wdlJRvg",
+"2greQ1zLPxs",
+"wWVoHKwl208",
+"vp2DKM0vWnY",
+"gUEX41RbHRg",
+"Vf0Xd1Y-52M",
+"PxTBu5AQ2WQ",
+"MeTVaoFAknA",
+"zTxFo-eBY7U",
+"unL9ort6mHU",
+"N_iGxg0jIxg",
+"L8hM1WJlYHk",
+"b3Ips4ixHw8",
+"003ga9OunEc",
 
   ];
 
@@ -330,6 +355,31 @@ const COA = () => {
 "Question on DMA (Direct Memory Access) | Input/Output Organization| COA | UGC NTA NET June 2021",
 "RISC vs CISC | Computer Organization & Architecture",
 "Operand Forwarding in Computer Organization & Architecture | Data Hazard",
+"Cache: GATE 2004 - 2006 | L - 2 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Cache: GATE 2006 - 2007 | L - 3 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Cache: GATE 2012 - 2014 | L - 5 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Cache: GATE 2015 - 2017 | L - 6 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Cache: GATE 2018 - 2021 | L - 7 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Memory Organization GATE 1995-2013 | Lec. - 8 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Memory Organization GATE 1995-2013 | Lec. - 9 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Datapath GATE 2001-2020 | Lec. - 10 | COA GATE PYQ | GATE 2022 | Vishvadeep Gothi",
+"Instruction & Addressing Modes: GATE 1987-2004 | Lec. - 11 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Instruction and Addressing Modes: GATE 2005-2015 | Lec. - 12 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Instruction and Addressing Modes: GATE 2017-2021 | Lec. - 13 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"CPU & Control Unit: GATE:1987 - 2004 | Lec. - 14 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"CPU & Control Unit: GATE:2005-2021 | Lec. - 15 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Magnetic Disk: 1990-2007 | Lec. - 16 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Magnetic Disk 2008-2021 | Lec. - 17 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"IO Organization & DMA: 1987-2005 | Lec. - 18 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"IO Organization & DMA: 2005-2021 | Lec. - 19 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Microprogramming: GATE 2003-2004 | Lec. - 20 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Microprogramming: GATE 2006-2021 | Lec. - 21 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Pipelining: GATE 1999-2004 | Lec. - 22 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Cache Write: Write Through & Write Back | Part-5 | COA 2.0 | GATE 2022 | Vishvadeep Gothi",
+"Pipelining: GATE 2005-2008 | Lec. - 23 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Pipelining: GATE 2009-2014 | Lec. - 24 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Pipelining: GATE 2014-2016 | Lec. - 25 | COA GATE 2022 PYQ | Vishvadeep Gothi",
+"Pipelining: GATE 2017-2021 | Lec. - 26 | COA GATE 2022 PYQ | Vishvadeep Gothi",
 
 
     "",
@@ -398,7 +448,8 @@ const COA = () => {
           <nav className="space-y-4">
             {[
               ["All Videos", "All Videos", 0, 97],
-              ["Before exam", "Before exam", 97, 200],
+              ["Before exam", "Before exam", 97, 161],
+              ["PYQ ", "PYQ", 161, 225],
               
             ].map(([key, label]) => (
               <button
@@ -431,11 +482,13 @@ const COA = () => {
         </div>
 
         {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 97)}
-        {selectedSection === null && renderSection("Before exam", "Before exam ", 97, 200)}
+        {selectedSection === null && renderSection("Before exam", "Before exam ", 97, 161)}
+        {selectedSection === null && renderSection("PYQ ", "PYQ", 161,225)}
         
 
         {selectedSection === "All Videos" && renderSection("All Videos", "All Videos", 0, 97)}
-        {selectedSection === "Before exam" && renderSection("Before exam", "Before exam ", 97, 200)}
+        {selectedSection === "Before exam" && renderSection("Before exam", "Before exam ", 97, 161)}
+        {selectedSection === "PYQ " && renderSection("PYQ ", "PYQ",161,225)}
         
       </main>
 

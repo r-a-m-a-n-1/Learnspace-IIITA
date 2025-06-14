@@ -1,3 +1,4 @@
+
 import React from 'react';
 
 const teamMembers = [
@@ -15,15 +16,13 @@ const teamMembers = [
 
 const TechTitaniumTeam = () => {
   return (
-    <div className="min-h-screen w-full bg-gray-900 flex flex-col justify-center items-center py-12 px-4 sm:px-6 lg:px-8 relative">
+    <div className="min-h-screen w-full bg-gray-900 flex flex-col justify-center items-center py-16 px-4 sm:px-6 lg:px-8 relative"> {/* Increased py-12 to py-16 */}
       {/* Header */}
-      <div className="w-full max-w-6xl text-center mb-8 sm:mb-12">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text animate-fadeIn">
+      <div className="w-full max-w-6xl text-center mb-8 sm:mb-12 pt-8 sm:pt-0"> 
+        <h1 className="text-4xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text animate-fadeIn">
           LearnSpace Team
         </h1>
-        <p className="mt-4 text-gray-300 max-w-2xl mx-auto">
-          The brilliant minds behind your academic success
-        </p>
+     
       </div>
 
       {/* Team Grid */}
@@ -59,9 +58,9 @@ const TechTitaniumTeam = () => {
         </div>
       </div>
 
-      {/* Footer Note */}
+      {/* Footer Note - Changed as requested */}
       <div className="mt-12 sm:mt-16 text-center text-gray-400 text-sm">
-        <p>Building the future of education at IIIT Allahabad</p>
+        <p>© {new Date().getFullYear()} All rights reserved</p>
       </div>
     </div>
   );
