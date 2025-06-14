@@ -1,6 +1,5 @@
 
 import React from 'react';
-
 const teamMembers = [
   {
     name: 'Raman Gautam',
@@ -9,7 +8,7 @@ const teamMembers = [
   },
   {
     name: 'Abhishek',
-    role: 'Data Curator',
+    role: 'Data Curator Frontend Developer & Data Analyst,"contributed to LearnSpace by integrating educational video content, analyzing usage data, and designing key frontend components for an interactive learning experience."',
     imgSrc: '/abhishek.jpg',
   },
 ];
