@@ -1,0 +1,79 @@
+[debug] [2025-06-14T16:58:59.600Z] ----------------------------------------------------------------------
+[debug] [2025-06-14T16:58:59.605Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\raman\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-06-14T16:58:59.606Z] CLI Version:   14.7.0
+[debug] [2025-06-14T16:58:59.606Z] Platform:      win32
+[debug] [2025-06-14T16:58:59.606Z] Node Version:  v22.14.0
+[debug] [2025-06-14T16:58:59.607Z] Time:          Sat Jun 14 2025 22:28:59 GMT+0530 (India Standard Time)
+[debug] [2025-06-14T16:58:59.607Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-14T16:59:00.013Z] Object "/database" in "firebase.json" has unknown property: {"additionalProperty":"instance"}
+[debug] [2025-06-14T16:59:00.014Z] Field "/database" in "firebase.json" is possibly invalid: must be array
+[debug] [2025-06-14T16:59:00.014Z] Field "/database" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-06-14T16:59:00.021Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-14T16:59:00.022Z] > authorizing via signed-in user (ramangautam0037@gmail.com)
+[debug] [2025-06-14T16:59:00.022Z] [iam] checking project adminlogin-5a98a for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2025-06-14T16:59:00.024Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:00.024Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:00.026Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions [none]
+[debug] [2025-06-14T16:59:00.026Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions x-goog-quota-user=projects/adminlogin-5a98a
+[debug] [2025-06-14T16:59:00.026Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2025-06-14T16:59:13.186Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions 200
+[debug] [2025-06-14T16:59:13.186Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2025-06-14T16:59:13.187Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:13.187Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:13.188Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a [none]
+[debug] [2025-06-14T16:59:14.682Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a 200
+[debug] [2025-06-14T16:59:14.682Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a {"projectId":"adminlogin-5a98a","projectNumber":"1093434294769","displayName":"AdminLogin","name":"projects/adminlogin-5a98a","resources":{"hostingSite":"adminlogin-5a98a","realtimeDatabaseInstance":"adminlogin-5a98a-default-rtdb"},"state":"ACTIVE","etag":"1_4f8eb6b3-10ce-411d-9e66-61595908e567"}
+[debug] [2025-06-14T16:59:14.683Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:14.683Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:14.683Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a [none]
+[debug] [2025-06-14T16:59:15.807Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a 200
+[debug] [2025-06-14T16:59:15.808Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a {"projectId":"adminlogin-5a98a","projectNumber":"1093434294769","displayName":"AdminLogin","name":"projects/adminlogin-5a98a","resources":{"hostingSite":"adminlogin-5a98a","realtimeDatabaseInstance":"adminlogin-5a98a-default-rtdb"},"state":"ACTIVE","etag":"1_4f8eb6b3-10ce-411d-9e66-61595908e567"}
+[info] 
+[info] === Deploying to 'adminlogin-5a98a'...
+[info] 
+[info] i  deploying database, firestore, hosting 
+[info] i  database: checking rules syntax... 
+[debug] [2025-06-14T16:59:15.817Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:15.817Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:15.818Z] >>> [apiv2][query] GET https://firebasedatabase.googleapis.com/v1beta/projects/adminlogin-5a98a/locations/-/instances/adminlogin-5a98a-default-rtdb [none]
+[debug] [2025-06-14T16:59:25.827Z] *** [apiv2] error from fetch(https://firebasedatabase.googleapis.com/v1beta/projects/adminlogin-5a98a/locations/-/instances/adminlogin-5a98a-default-rtdb, {"headers":{},"method":"GET","signal":{}}): AbortError: The user aborted a request.
+[debug] [2025-06-14T16:59:25.827Z] Timeout reached making request to https://firebasedatabase.googleapis.com/v1beta/projects/adminlogin-5a98a/locations/-/instances/adminlogin-5a98a-default-rtdb
+[debug] [2025-06-14T16:59:25.829Z] FirebaseError: Timeout reached making request to https://firebasedatabase.googleapis.com/v1beta/projects/adminlogin-5a98a/locations/-/instances/adminlogin-5a98a-default-rtdb
+    at RetryOperation._fn (C:\Users\raman\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:257:35)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+[error] 
+[error] Error: Failed to get instance details for instance: adminlogin-5a98a-default-rtdb. See firebase-debug.log for more details.
+[debug] [2025-06-14T16:59:51.010Z] ----------------------------------------------------------------------
+[debug] [2025-06-14T16:59:51.015Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\raman\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2025-06-14T16:59:51.016Z] CLI Version:   14.7.0
+[debug] [2025-06-14T16:59:51.016Z] Platform:      win32
+[debug] [2025-06-14T16:59:51.017Z] Node Version:  v22.14.0
+[debug] [2025-06-14T16:59:51.017Z] Time:          Sat Jun 14 2025 22:29:51 GMT+0530 (India Standard Time)
+[debug] [2025-06-14T16:59:51.018Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-06-14T16:59:51.392Z] Object "/database" in "firebase.json" has unknown property: {"additionalProperty":"instance"}
+[debug] [2025-06-14T16:59:51.393Z] Field "/database" in "firebase.json" is possibly invalid: must be array
+[debug] [2025-06-14T16:59:51.393Z] Field "/database" in "firebase.json" is possibly invalid: must match a schema in anyOf
+[debug] [2025-06-14T16:59:51.401Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-06-14T16:59:51.401Z] > authorizing via signed-in user (ramangautam0037@gmail.com)
+[debug] [2025-06-14T16:59:51.401Z] [iam] checking project adminlogin-5a98a for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2025-06-14T16:59:51.403Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:51.404Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T16:59:51.406Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions [none]
+[debug] [2025-06-14T16:59:51.406Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions x-goog-quota-user=projects/adminlogin-5a98a
+[debug] [2025-06-14T16:59:51.406Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
+[debug] [2025-06-14T17:00:16.494Z] *** [apiv2] error from fetch(https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions, {"headers":{},"method":"POST","body":"{\"permissions\":[\"datastore.indexes.create\",\"datastore.indexes.delete\",\"datastore.indexes.list\",\"datastore.indexes.update\",\"firebase.projects.get\",\"firebasedatabase.instances.update\",\"firebasehosting.sites.update\"]}"}): FetchError: request to https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions failed, reason: 
+[debug] [2025-06-14T17:00:16.495Z] [iam] error while checking permissions, command may fail: Failed to make request to https://cloudresourcemanager.googleapis.com/v1/projects/adminlogin-5a98a:testIamPermissions
+[debug] [2025-06-14T17:00:16.496Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T17:00:16.496Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T17:00:16.497Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a [none]
+[debug] [2025-06-14T17:00:30.294Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a 200
+[debug] [2025-06-14T17:00:30.295Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a {"projectId":"adminlogin-5a98a","projectNumber":"1093434294769","displayName":"AdminLogin","name":"projects/adminlogin-5a98a","resources":{"hostingSite":"adminlogin-5a98a","realtimeDatabaseInstance":"adminlogin-5a98a-default-rtdb"},"state":"ACTIVE","etag":"1_4f8eb6b3-10ce-411d-9e66-61595908e567"}
+[debug] [2025-06-14T17:00:30.295Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T17:00:30.295Z] Checked if tokens are valid: true, expires at: 1749921437847
+[debug] [2025-06-14T17:00:30.296Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a [none]
+[debug] [2025-06-14T17:01:00.304Z] *** [apiv2] error from fetch(https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a, {"headers":{},"method":"GET","signal":{}}): AbortError: The user aborted a request.
+[debug] [2025-06-14T17:01:00.305Z] Timeout reached making request to https://firebase.googleapis.com/v1beta1/projects/adminlogin-5a98a (original: The user aborted a request.)
+[error] 
+[error] Error: Assertion failed: resolving hosting target of a site with no site name or target name. This should have caused an error earlier

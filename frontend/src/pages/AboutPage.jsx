@@ -375,39 +375,39 @@ const AboutPage = () => {
       </div>
 
       {/* Full-Width Footer */}
-      <footer className="w-full bg-gray-900 py-4">
-        <div className="w-full flex flex-col items-center">
-          <div className="flex items-center text-white space-x-2 mb-3">
-            <p className="text-sm md:text-base">Made with</p>
-            <AiFillHeart className="text-red-600 text-xl" />
-            <p
-              className="text-sm md:text-base cursor-pointer hover:underline"
-              onClick={() => navigate('/techtitanium-team')}
-            >
-              by LearnSpace Team
-            </p>
-          </div>
+     <footer className="w-full bg-gray-900 py-4">
+  <div className="w-full flex flex-col items-center">
+    <div className="flex items-center text-white space-x-2 mb-3">
+      <p className="text-sm md:text-base">Made with</p>
+      <AiFillHeart className="text-red-600 text-xl" />
+      <p
+        className="text-sm md:text-base cursor-pointer underline hover:text-emerald-400 transition"
+        onClick={() => navigate('/techtitanium-team')}
+      >
+        by LearnSpace Team
+      </p>
+    </div>
 
-          {/* Social Media Links */}
-          <div className="flex items-center space-x-4 mb-3">
-            <a href="https://www.instagram.com/learnspace_iiita/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-600">
-              <FaInstagram className="text-xl md:text-2xl" />
-            </a>
-            <a href="https://chat.whatsapp.com/FF3dyV555QwLDY01jvV9qE" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-500">
-              <FaWhatsapp className="text-xl md:text-2xl" />
-            </a>
-            <a href="https://www.facebook.com/campusbazarsupportteam" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-600">
-              <FaFacebook className="text-xl md:text-2xl" />
-            </a>
-          </div>
+    {/* Social Media Links */}
+    <div className="flex items-center space-x-4 mb-3">
+      <a href="https://www.instagram.com/learnspace_iiita/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-600">
+        <FaInstagram className="text-xl md:text-2xl" />
+      </a>
+      <a href="https://chat.whatsapp.com/FF3dyV555QwLDY01jvV9qE" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-500">
+        <FaWhatsapp className="text-xl md:text-2xl" />
+      </a>
+      <a href="https://www.facebook.com/campusbazarsupportteam" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-600">
+        <FaFacebook className="text-xl md:text-2xl" />
+      </a>
+    </div>
 
-          {/* Copyright Info */}
-          <div className="flex items-center text-white space-x-1">
-            <FaCopyright className="text-white text-xs" />
-            <p className="text-xs">2025 LearnSpace-IIITA. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+    {/* Copyright */}
+    <div className="flex items-center text-white space-x-1">
+      <FaCopyright className="text-white text-xs" />
+      <p className="text-xs">2025 LearnSpace-IIITA. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
     </div>
   );
 };
