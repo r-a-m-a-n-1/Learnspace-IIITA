@@ -2106,7 +2106,7 @@ function AppContent() {
         <Route path="/sem2/edc" element={<EDC />} />
         <Route path="/sem2/probability-statistics" element={<ProbabilityStatistics />} />
         <Route path="/sem2/physical-education" element={<PhysicalEducation />} />
-        <Route path="/sem2/essential-of-business-informatic" element={< EssentialOfBusinessInformaticsVideo />} />
+        <Route path="/sem2/principles-of-management" element={< PrinciplesManagement />} />
 
          {/* sem 4 ece video routing */}
         <Route path="/sem4/ece/analog-communication-videos" element={<AnalogCommunicationVideos />} />

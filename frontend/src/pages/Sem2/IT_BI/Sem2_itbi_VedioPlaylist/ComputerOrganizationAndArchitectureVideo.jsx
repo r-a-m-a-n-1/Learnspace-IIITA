@@ -482,13 +482,13 @@ const COA = () => {
         </div>
 
         {selectedSection === null && renderSection("All Videos", "All Videos ", 0, 97)}
-        {selectedSection === null && renderSection("Before exam", "Before exam ", 97, 161)}
-        {selectedSection === null && renderSection("PYQ ", "PYQ", 161,225)}
+        {selectedSection === null && renderSection("Before exam", "Before exam ", 97, 162)}
+        {selectedSection === null && renderSection("PYQ ", "PYQ", 162,225)}
         
 
         {selectedSection === "All Videos" && renderSection("All Videos", "All Videos", 0, 97)}
-        {selectedSection === "Before exam" && renderSection("Before exam", "Before exam ", 97, 161)}
-        {selectedSection === "PYQ " && renderSection("PYQ ", "PYQ",161,225)}
+        {selectedSection === "Before exam" && renderSection("Before exam", "Before exam ", 97, 162)}
+        {selectedSection === "PYQ " && renderSection("PYQ ", "PYQ",162,225)}
         
       </main>
 
