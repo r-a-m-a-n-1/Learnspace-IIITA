@@ -93,7 +93,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import backgroundImage from './about.jpg';
+import backgroundImage from '/main.jpg';
 
 import AmazingFeature from './AmazingFeaturesPages';
 import ChooseSemester from './ChooseSemesterPage';
