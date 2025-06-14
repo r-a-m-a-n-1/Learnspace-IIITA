@@ -9,7 +9,7 @@ const teamMembers = [
   {
     name: 'Abhishek',
     role: 'Data Curator Frontend Developer & Data Analyst,"contributed to LearnSpace by integrating educational video content, analyzing usage data, and designing key frontend components for an interactive learning experience."',
-    imgSrc: '/abhishek.jpg',
+    imgSrc: '/a.jpg',
   },
 ];
 
