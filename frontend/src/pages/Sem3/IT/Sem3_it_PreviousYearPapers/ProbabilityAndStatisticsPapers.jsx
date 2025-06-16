@@ -66,7 +66,7 @@ const  ProbabilityAndStatisticsPapersPage = () => {
     const fetchPapers = async () => {
       try {
         const semester = "Semester 3";
-        const subject = "Probability And Statistics";
+        const subject = "Probability and Statistics";
 
         const yearsRef = collection(db, "semesters", semester, "years");
         const yearsSnapshot = await getDocs(yearsRef);
