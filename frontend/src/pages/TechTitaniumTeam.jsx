@@ -5,7 +5,12 @@ const teamMembers = [
     name: 'Raman Gautam',
     role: 'Developer',
     imgSrc: '/raman.jpg',
-  }
+  },
+  {
+    name: 'Abhishek',
+    role: 'Data Curator',
+    imgSrc: '/a.jpg',
+  },
 ];
 
 const TechTitaniumTeam = () => {
