@@ -794,7 +794,7 @@ const semesterSubjects = {
     "IT-BI": [
       "Object Oriented Methodologies",
       "Operating System",
-      "Probability and Statistics",
+      "Probability And Statistics",
       "Indian Economics",
       "Foundation Of Fintech",
       "Prayas",

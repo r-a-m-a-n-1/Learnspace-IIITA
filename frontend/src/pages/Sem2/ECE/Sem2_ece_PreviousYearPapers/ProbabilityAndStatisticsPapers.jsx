@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { db } from "../../../../firebase";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
-const  ProbabiliyAndStatisticsPapersPage = () => {
+const  ProbabilityAndStatisticsPapersPage = () => {
   const [papers, setPapers] = useState({});
   const [loading, setLoading] = useState(true);
 
@@ -65,7 +65,7 @@ const  ProbabiliyAndStatisticsPapersPage = () => {
   useEffect(() => {
     const fetchPapers = async () => {
       try {
-        const semester = "Semester 2";
+        const semester = "Semester 3";
         const subject = "Probability And Statistics";
 
         const yearsRef = collection(db, "semesters", semester, "years");
@@ -127,7 +127,7 @@ const  ProbabiliyAndStatisticsPapersPage = () => {
     <div className="bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white min-h-screen">
       <div className="sticky top-0 z-50 w-full bg-black bg-opacity-90 backdrop-blur-sm py-4">
         <h1 className="text-3xl font-bold text-center">
-Probabiliy And Statistics Papers
+         Probability And Statistics Papers 
         </h1>
       </div>
 
@@ -186,4 +186,4 @@ Probabiliy And Statistics Papers
   );
 };
 
-export default ProbabiliyAndStatisticsPapersPage;
+export default ProbabilityAndStatisticsPapersPage;
