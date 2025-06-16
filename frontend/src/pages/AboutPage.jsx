@@ -244,7 +244,7 @@ const AboutPage = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-5xl bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-xl shadow-xl overflow-hidden mt-4"
+          className="w-full max-w-5xl bg-gray-800 bg-opacity-50 backdrop-filter backdrop-blur-xl rounded-xl shadow-xl overflow-hidden mt-4" 
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-6">
             {/* Left Column - Text Content */}
@@ -253,7 +253,7 @@ const AboutPage = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text pt-4 lg:pt-0"
+                className="text-3xl md:text-4xl font-bold mb-4 text-center lg:text-left bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text pt-4 lg:pt-0" 
               >
                 About LearnSpace-IIITA
               </motion.h1>
@@ -313,7 +313,7 @@ const AboutPage = () => {
               <div className="relative w-full max-w-md">
                 {/* Semester cards visualization */}
                 <div className="grid grid-cols-4 gap-2 mb-6">
-                  {[1, 2, 3, 4, 5, 6, 7, 8].map(sem => (
+                  {[1,2,3,4,5,6,7,8].map(sem => (
                     <motion.div
                       key={sem}
                       className="aspect-square bg-gray-800 rounded-lg flex items-center justify-center border border-emerald-500"
@@ -375,39 +375,39 @@ const AboutPage = () => {
       </div>
 
       {/* Full-Width Footer */}
-      <footer className="w-full bg-gray-900 py-4">
-        <div className="w-full flex flex-col items-center">
-          <div className="flex items-center text-white space-x-2 mb-3">
-            <p className="text-sm md:text-base">Made with</p>
-            <AiFillHeart className="text-red-600 text-xl" />
-            <p
-              className="text-sm md:text-base cursor-pointer underline hover:text-emerald-400 transition"
-              onClick={() => navigate('/techtitanium-team')}
-            >
-              by LearnSpace Team
-            </p>
-          </div>
+     <footer className="w-full bg-gray-900 py-4">
+  <div className="w-full flex flex-col items-center">
+    <div className="flex items-center text-white space-x-2 mb-3">
+      <p className="text-sm md:text-base">Made with</p>
+      <AiFillHeart className="text-red-600 text-xl" />
+      <p
+        className="text-sm md:text-base cursor-pointer hover:text-emerald-400 transition"
+        onClick={() => navigate('/techtitanium-team')}
+      >
+        by LearnSpace Team
+      </p>
+    </div>
 
-          {/* Social Media Links */}
-          <div className="flex items-center space-x-4 mb-3">
-            <a href="https://www.instagram.com/learnspace_iiita/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-600">
-              <FaInstagram className="text-xl md:text-2xl" />
-            </a>
-            <a href="https://chat.whatsapp.com/FF3dyV555QwLDY01jvV9qE" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-500">
-              <FaWhatsapp className="text-xl md:text-2xl" />
-            </a>
-            <a href="https://www.facebook.com/campusbazarsupportteam" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-600">
-              <FaFacebook className="text-xl md:text-2xl" />
-            </a>
-          </div>
+    {/* Social Media Links */}
+    <div className="flex items-center space-x-4 mb-3">
+      <a href="https://www.instagram.com/learnspace_iiita/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-pink-600">
+        <FaInstagram className="text-xl md:text-2xl" />
+      </a>
+      <a href="https://chat.whatsapp.com/FF3dyV555QwLDY01jvV9qE" target="_blank" rel="noopener noreferrer" className="text-white hover:text-green-500">
+        <FaWhatsapp className="text-xl md:text-2xl" />
+      </a>
+      <a href="https://www.facebook.com/campusbazarsupportteam" target="_blank" rel="noopener noreferrer" className="text-white hover:text-blue-600">
+        <FaFacebook className="text-xl md:text-2xl" />
+      </a>
+    </div>
 
-          {/* Copyright */}
-          <div className="flex items-center text-white space-x-1">
-            <FaCopyright className="text-white text-xs" />
-            <p className="text-xs">2025 LearnSpace-IIITA. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+    {/* Copyright */}
+    <div className="flex items-center text-white space-x-1">
+      <FaCopyright className="text-white text-xs" />
+      <p className="text-xs">2025 LearnSpace-IIITA. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
     </div>
   );
 };
