@@ -34,7 +34,7 @@ const Sem3_it_LectureNotes = () => {
             to="/sem3/it/oopm-notes"
             className="bg-gradient-to-br from-blue-400 to-blue-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/linear_algebra.png" alt="Object Oriented Methodologies" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/op1.png" alt="Object Oriented Methodologies" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">Object Oriented Methodologies</h2>
           </Link>
 
@@ -43,7 +43,7 @@ const Sem3_it_LectureNotes = () => {
             to="/sem3/it/operating-system-notes"
             className="bg-gradient-to-br from-purple-400 to-purple-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/psp.png" alt="Operating System" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/operating.png" alt="Operating System" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">Operating System</h2>
           </Link>
 
@@ -61,7 +61,7 @@ const Sem3_it_LectureNotes = () => {
             to="/sem3/it/software-engineering-notes"
             className="bg-gradient-to-br from-yellow-400 to-yellow-500 text-white shadow-xl rounded-xl w-full max-w-xs h-60 flex flex-col justify-center items-center px-4 transition-all duration-300 transform hover:scale-105 hover:rotate-3 hover:shadow-2xl"
           >
-            <img src="/ethics.png" alt="Software Engineering" className="w-16 h-16 mb-4 animate-bounce" />
+            <img src="/soft.png" alt="Software Engineering" className="w-16 h-16 mb-4 animate-bounce" />
             <h2 className="text-lg sm:text-xl font-bold text-center">Software Engineering</h2>
           </Link>
 

@@ -125,7 +125,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Loader2, Check, X } from 'lucide-react';
 import api from '../api/api';
-import bgImage from './forget.jpg';
+import bgImage from '/forget.jpg';
 
 export default function ForgotPassword() {
   const [step, setStep] = useState(1);
