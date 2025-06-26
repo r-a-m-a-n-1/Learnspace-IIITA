@@ -156,7 +156,7 @@ const AboutPage = () => {
                       <div className="text-2xl font-bold text-yellow-400">
                         {adminCount > 0 ? `${adminCount}+` : 'Loading...'}
                       </div>
-                      <div className="text-xs text-gray-300">Contributors</div>
+                      <div className="text-xs text-gray-300"> Resource Uploader</div>
                     </div>
                   </div>
                 </div>
