@@ -14,7 +14,7 @@ function HomePage() {
 
   // Arrow animation styling (unchanged size as per original)
   const arrowStyle = {
-    width: 0,
+    width:0,
     height: 0,
     borderLeft: "50px solid transparent",
     borderRight: "50px solid transparent",
