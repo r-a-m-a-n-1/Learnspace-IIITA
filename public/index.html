@@ -1,23 +1,61 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Basic Meta Tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>LearnSpace IIITA - Notes, Lectures & PYQs</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="LearnSpace IIITA offers semester-wise lecture notes, video lectures, and previous year papers for B.Tech students at IIIT Allahabad.">
-    <meta name="keywords" content="LearnSpace, IIITA, Lecture Notes, PYQs, Video Lectures, B.Tech, Semester, IT, ECE, IT-BI, Study Material">
-    <meta name="robots" content="index, follow">
-    <meta name="author" content="LearnSpace Team">
+    <!-- Title & SEO -->
+    <title>LearnSpace IIITA – Semester Notes, PYQs & Video Lectures | Raman</title>
+    <meta name="description" content="LearnSpace IIITA provides IIIT Allahabad B.Tech students with semester-wise notes, previous year questions (PYQs), and video lectures across all branches." />
+    <meta name="keywords" content="LearnSpace IIITA, IIITA notes, IIITA PYQs, IIIT Allahabad lecture notes, B.Tech study material IIITA, semester notes IIITA, Raman developer" />
+    <meta name="author" content="Raman Gautam" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://adminlogin-5a98a.web.app/" />
 
-    <!-- Open Graph Tags for social sharing -->
-    <meta property="og:title" content="LearnSpace IIITA - Notes, Lectures & PYQs">
-    <meta property="og:description" content="Lecture notes, PYQs, and video lectures organized by semester and branch for IIITA students.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://adminlogin-5a98a.web.app/">
-    <meta property="og:image" content="https://adminlogin-5a98a.web.app/11.png">
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="LearnSpace IIITA – Notes, PYQs & Video Lectures by Raman" />
+    <meta property="og:description" content="Access semester-wise lecture notes, previous year papers, and video lectures for all B.Tech branches at IIIT Allahabad." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adminlogin-5a98a.web.app/" />
+    <meta property="og:image" content="https://adminlogin-5a98a.web.app/assets/og-image.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@LearnSpaceIIITA" />
+    <meta name="twitter:creator" content="@RAMAN_DEV" />
+    <meta name="twitter:title" content="LearnSpace IIITA – Notes, PYQs & Video Lectures by Raman" />
+    <meta name="twitter:description" content="Lecture notes, PYQs & video lectures organized by semester for IIIT Allahabad B.Tech students." />
+    <meta name="twitter:image" content="https://adminlogin-5a98a.web.app/assets/og-image.png" />
+
+    <!-- JSON-LD Structured Data: Organization & Developer -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "EducationalOrganization",
+          "name": "LearnSpace IIITA",
+          "url": "https://adminlogin-5a98a.web.app/",
+          "logo": "https://adminlogin-5a98a.web.app/assets/logo.png",
+          "description": "LearnSpace IIITA offers semester-wise lecture notes, previous year papers, and video lectures for all B.Tech branches at IIIT Allahabad."
+        },
+        {
+          "@type": "Person",
+          "name": "Raman Gautam",
+          "url": "https://adminlogin-5a98a.web.app/",
+          "jobTitle": "Developer",
+          "affiliation": {
+            "@type": "EducationalOrganization",
+            "name": "LearnSpace IIITA"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <!-- Prefetch Official IIITA for Context -->
+    <link rel="preconnect" href="https://iiita.ac.in" />
 
     <!-- Firebase SDKs -->
     <script defer src="/__/firebase/11.9.0/firebase-app-compat.js"></script>
@@ -32,51 +70,83 @@
     <script defer src="/__/firebase/11.9.0/firebase-performance-compat.js"></script>
     <script defer src="/__/firebase/init.js?useEmulator=true"></script>
 
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+    <!-- Inline CSS for Fast Rendering -->
+    <style>
+      body { margin:0; font-family:Roboto,sans-serif; background:#f7f9fa; color:#333; }
+      header, main, footer { max-width:960px; margin:0 auto; padding:1rem; }
+      header { text-align:center; padding-top:2rem; }
+      h1 { font-size:2.25rem; margin-bottom:0.5rem; }
+      h2 { font-size:1.75rem; margin-top:2rem; }
+      p, li { line-height:1.6; margin-bottom:1rem; }
+      ul { padding-left:1.2rem; }
+      .btn-primary {
+        display:inline-block; padding:0.75rem 1.5rem;
+        background:#039be5; color:#fff; border-radius:0.25rem;
+        text-decoration:none; font-weight:500;
       }
+      footer { font-size:0.875rem; text-align:center; margin-top:3rem; color:#666; }
     </style>
   </head>
-  <body>
-    <div id="message">
-      <h2>Welcome to LearnSpace</h2>
-      <h1>Explore Notes, Lectures & PYQs for IIITA</h1>
-      <p>LearnSpace is your one-stop solution for semester-wise video lectures, curated notes, and previous year papers designed especially for B.Tech students at IIIT Allahabad.</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
 
+  <body>
+    <!-- Site Header -->
+    <header>
+      <img src="/assets/logo.png" alt="LearnSpace IIITA Logo" width="120" />
+      <h1>LearnSpace IIITA</h1>
+      <p>Your one-stop hub for semester-wise notes, video lectures & PYQs at IIIT Allahabad.</p>
+      <a href="/choose-semester" class="btn-primary">Start Exploring</a>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+      <section>
+        <h2>About LearnSpace IIITA</h2>
+        <p>
+          LearnSpace IIITA is an independent student project by <strong>Raman</strong>, designed to help IIIT Allahabad B.Tech students:
+        </p>
+        <ul>
+          <li><strong>Lecture Notes</strong> curated semester-wise for all branches (IT, ECE, IT-BI…)</li>
+          <li><strong>Previous Year Questions (PYQs)</strong> with answer keys</li>
+          <li><strong>Video Lectures</strong> from top IIITA instructors</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Keyword-Rich Campus Overview</h2>
+        <p>
+          Whether you search for <em>IIIT Allahabad notes</em>, <em>IIITA video lectures</em>, or <em>B.Tech study material IIITA</em>, LearnSpace IIITA surfaces at the top to give you instant access to all your academic resources.
+        </p>
+      </section>
+
+      <section>
+        <h2>Disclaimer</h2>
+        <p>
+          LearnSpace IIITA is <strong>not officially affiliated</strong> with IIIT Allahabad. All materials are curated by IIITA students for peer learning.
+        </p>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 LearnSpace IIITA • Developed by Raman • <a href="https://iiita.ac.in" target="_blank" rel="noopener">IIIT Allahabad Official</a></p>
+    </footer>
+
+    <!-- Firebase SDK Loader Status -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        const loadEl = document.querySelector('#load');
+      document.addEventListener('DOMContentLoaded', () => {
+        const status = document.createElement('div');
+        status.style.textAlign = 'center';
+        status.style.margin = '2rem';
         try {
-          let app = firebase.app();
-          let features = [
-            'auth', 
-            'database', 
-            'firestore',
-            'functions',
-            'messaging', 
-            'storage', 
-            'analytics', 
-            'remoteConfig',
-            'performance',
-          ].filter(feature => typeof app[feature] === 'function');
-          loadEl.textContent = `Firebase SDK loaded with ${features.join(', ')}`;
+          const app = firebase.app();
+          const features = ['auth','database','firestore','functions','messaging','storage','analytics','remoteConfig','performance']
+            .filter(f => typeof app[f] === 'function');
+          status.textContent = `Firebase SDK initialized with: ${features.join(', ')}`;
         } catch (e) {
+          status.textContent = 'Error loading Firebase SDK. See console.';
           console.error(e);
-          loadEl.textContent = 'Error loading the Firebase SDK, check the console.';
         }
+        document.body.appendChild(status);
       });
     </script>
   </body>
