@@ -9,7 +9,7 @@ const DashboardPage = () => {
 		logout();
 	};
 
-	// Check if the user is logged in. If not, display a message.
+	// 
 	if (!user) {
 		return <div>Please log in to access your dashboard.</div>;
 	}
