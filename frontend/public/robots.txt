@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://adminlogin-5a98a.web.app/sitemap.xml
